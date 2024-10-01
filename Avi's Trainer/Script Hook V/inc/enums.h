@@ -8,6 +8,25 @@
 
 #include <windows.h>
 
+
+enum eCursorType
+{
+	MOUSE_None = 0,
+	MOUSE_Normal = 1,
+	MOUSE_TransparentNormal = 2,
+	MOUSE_PreGrab = 3,
+	MOUSE_Grab = 4,
+	MOUSE_MiddleFinger = 5,
+	MOUSE_LeftArrow = 6,
+	MOUSE_RightArrow = 7,
+	MOUSE_UpArrow = 8,
+	MOUSE_DownArrow = 9,
+	MOUSE_HorizontalExpand = 10,
+	MOUSE_Add = 11,
+	MOUSE_Remove = 12,
+};
+
+
 enum eAudioFlag
 {
 	AudioFlagActivateSwitchWheelAudio,

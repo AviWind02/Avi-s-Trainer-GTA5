@@ -10,6 +10,8 @@
     <ClCompile Include="core\main.cpp" />
     <ClCompile Include="core\mem\pointers\pointers.cpp" />
     <ClCompile Include="core\mem\renderer\renderer.cpp" />
+    <ClCompile Include="GUI\draw\draw.cpp" />
+    <ClCompile Include="GUI\menu\menu.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="core\script.cpp" />
     <ClCompile Include="GUI\controls\controls.cpp" />
@@ -24,6 +26,8 @@
   <ItemGroup>
     <ClInclude Include="core\mem\pointers\pointers.hpp" />
     <ClInclude Include="core\mem\renderer\renderer.hpp" />
+    <ClInclude Include="GUI\draw\draw.h" />
+    <ClInclude Include="GUI\menu\menu.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Script Hook V\inc\enums.h" />
     <ClInclude Include="Script Hook V\inc\main.h" />

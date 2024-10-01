@@ -1,5 +1,10 @@
 #include "pch.h"
 
+// This is the control(key) file. 
+// Not sure what to add
+// it handles the menu controls, and has some options to check if something is being pressed
+// oh and sub menu too
+
 namespace GUI {
     namespace controls {
 
@@ -193,16 +198,16 @@ namespace GUI {
                     }
                 }
             }
-            optionCount = 0;//Reset
+            optionCount = 0;
         }
 
 
 
         void DisableControls()
         {
-            if (1)
+            if (isMenuOpen)
             {
-                if (1)
+                if (usingInMenuKeyboard)
                 {
                     PAD::DISABLE_ALL_CONTROL_ACTIONS(0);
                 }
