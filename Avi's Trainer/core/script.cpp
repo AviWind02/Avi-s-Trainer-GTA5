@@ -1,5 +1,16 @@
 #include "pch.h"
 #include "GUI/menu/menu.h"
+#include "GUI/buttons/buttons.h"
+
+int testInt;
+float testFloat;
+bool toggle;
+int StringArray;
+std::vector<std::string> testV
+{
+	"Name",
+	"Name2"
+};
 
 void main()
 {	
@@ -11,25 +22,11 @@ void main()
 		GUI::controls::DisableControls();
 		///////////////////
 
-
-		GUI::menu::SetOption("Test", "Test", "");
-		GUI::menu::SetSpriteOnOption("commonmenu", "arrowright", { 0.015f, 0.025f }, 1.f, { 255, 255, 255, 255 });
-		GUI::menu::SetOption("Test", "Test", "");
-		GUI::menu::SetSpriteOnOption("commonmenu", "common_medal", { 0.015f, 0.025f }, 1.f, { 255, 255, 255, 255 });
-		GUI::menu::SetOption("Test", "Test", "Test");
-		GUI::menu::SetOption("Test", "Test", "Test");
-		GUI::menu::SetOption("Test", "Test", "Test");
-		GUI::menu::SetOption("Test", "Test", "Test");
-		GUI::menu::SetOption("Test", "Test", "");
-		GUI::menu::SetSpriteOnOption("commonmenu", "common_medal", { 0.015f, 0.025f }, 1.f, { 255, 255, 255, 255 });
-		GUI::menu::SetOption("Test", "Test", "Test");
-		GUI::menu::SetOption("Test", "Test", "Test");
-		GUI::menu::SetOption("Test", "Test", "Test");
-		GUI::menu::SetOption("Test", "Test", "Test");
-		GUI::menu::SetOption("Test", "Test", "Test");
-		GUI::menu::SetOption("Test", "Test", "Test");
-		GUI::menu::SetOption("Test", "Test", "Test");
-		GUI::menu::SetSpriteOnOption("commonmenu", "common_medal", { 0.015f, 0.025f }, 1.f, { 255, 255, 255, 255 });
+		GUI::buttons::Option("Basic Option");
+		GUI::buttons::Int("Basic Int Option", &testInt, 0, 100, 5);
+		GUI::buttons::Float("Basic Float Option", &testFloat, 0, 10, .5f);
+		GUI::buttons::Toggle("Basic Toggle", &toggle);
+		GUI::buttons::StringArray("String Array", StringArray, testV);
 
 		///////////////////
 

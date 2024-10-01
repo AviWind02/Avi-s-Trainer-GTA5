@@ -16,6 +16,7 @@
     <ClCompile Include="GUI\controls\controls.cpp" />
     <ClCompile Include="GUI\draw\draw.cpp" />
     <ClCompile Include="GUI\menu\menu.cpp" />
+    <ClCompile Include="GUI\buttons\buttons.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -44,6 +45,7 @@
     <ClInclude Include="GUI\controls\controls.h" />
     <ClInclude Include="GUI\draw\draw.h" />
     <ClInclude Include="GUI\menu\menu.h" />
+    <ClInclude Include="GUI\buttons\buttons.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Script Hook V\lib\ScriptHookV.lib" />

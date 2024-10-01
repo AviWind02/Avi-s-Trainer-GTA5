@@ -271,9 +271,9 @@ namespace GUI {
             int totalPages = (controls::optionCount + maxOptions - 1) / maxOptions;
             char footerText[32];
             snprintf(footerText, sizeof(footerText), "Page %d/%d", currentPage, totalPages);
-
+            std::string lText = (controls::cursorVisible ? "Cursor: On | " : "");
             Vector2 leftTextPos = { menuPosition.x - footerTextOffset.x, endPos.y - optionSize.y / 2.0f + footerTextOffset.y };
-            draw::Text("Avi's Trainer | v1.0.0", colours::optionText, leftTextPos, { textScale, textScale }, false, false);
+            draw::Text((lText + "v2").c_str(), colours::optionText, leftTextPos, {textScale, textScale}, false, false);
 
             Vector2 rightTextPos = { menuPosition.x + footerTextOffset.x, endPos.y - optionSize.y / 2.0f + footerTextOffset.y };
             draw::Text(footerText, colours::optionText, rightTextPos, { textScale, textScale }, false, true);

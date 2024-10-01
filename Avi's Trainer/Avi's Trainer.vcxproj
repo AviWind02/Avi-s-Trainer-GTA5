@@ -10,6 +10,7 @@
     <ClCompile Include="core\main.cpp" />
     <ClCompile Include="core\mem\pointers\pointers.cpp" />
     <ClCompile Include="core\mem\renderer\renderer.cpp" />
+    <ClCompile Include="GUI\buttons\buttons.cpp" />
     <ClCompile Include="GUI\draw\draw.cpp" />
     <ClCompile Include="GUI\menu\menu.cpp" />
     <ClCompile Include="pch.cpp" />
@@ -26,6 +27,7 @@
   <ItemGroup>
     <ClInclude Include="core\mem\pointers\pointers.hpp" />
     <ClInclude Include="core\mem\renderer\renderer.hpp" />
+    <ClInclude Include="GUI\buttons\buttons.h" />
     <ClInclude Include="GUI\draw\draw.h" />
     <ClInclude Include="GUI\menu\menu.h" />
     <ClInclude Include="pch.h" />
