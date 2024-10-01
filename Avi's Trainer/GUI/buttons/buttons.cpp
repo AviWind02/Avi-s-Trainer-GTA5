@@ -5,12 +5,23 @@
 namespace GUI {
     namespace buttons {
 
-        bool Option(const char* Opiton)
+        bool Option(const char* Opiton, std::string holder)
         {
             return GUI::menu::SetOption(Opiton, NULL, NULL);
         }
 
-        bool Sub(const char* Opiton, pages::SubMenu menu)
+        //Sets the bool value to true on click
+        bool Option(const char* Opiton, bool* value, std::string holder)
+        {
+            if (GUI::menu::SetOption(Opiton, NULL, NULL))
+            {
+                *value = true;
+                return true;
+            }
+            return false;
+        }
+
+        bool Sub(const char* Opiton, pages::SubMenu menu, std::string holder)
         {
             bool clicked = Option(Opiton);
             GUI::menu::SetSpriteOnOption("commonmenu", "arrowright", { 0.015f, 0.025f }, 1.f, { 255, 255, 255, 255 });
@@ -20,7 +31,7 @@ namespace GUI {
             return clicked;
         }
 
-        bool Int(const char* option, int* value, int min, int max, int step) {
+        bool Int(const char* option, int* value, int min, int max, int step, std::string holder) {
 
             bool clicked = false;
             char valueTextBuffer[128];
@@ -35,17 +46,19 @@ namespace GUI {
                 if (controls::rightPressed) {
                     *value += step;
                     if (*value > max) *value = min;
+                    return true;
                 }
                 else if (controls::leftPressed) {
                     *value -= step;
                     if (*value < min) *value = max;
+                    return true;
                 }
             }
 
             return clicked;
         }
 
-        bool Toggle(const char* option, bool* value) {
+        bool Toggle(const char* option, bool* value, std::string holder) {
 
             bool clicked = Option(option);
             GUI::menu::SetSpriteOnOption("commonmenu", "common_medal", { 0.015f, 0.025f }, 1.f, (*value ? Colour(0, 255, 0, 255) : Colour(255, 255, 255, 255)));
@@ -58,7 +71,7 @@ namespace GUI {
             return false;
         }
 
-        bool Float(const char* option, float* value, float min, float max, float step) {
+        bool Float(const char* option, float* value, float min, float max, float step, std::string holder) {
             bool clicked = false;
             char valueTextBuffer[128];
 
@@ -83,17 +96,19 @@ namespace GUI {
                 if (controls::rightPressed) {
                     *value += step;
                     if (*value > max) *value = min;
+                    return true;
                 }
                 else if (controls::leftPressed) {
                     *value -= step;
                     if (*value < min) *value = max;
+                    return true;
                 }
             }
 
             return clicked;
         }
 
-        bool StringArray(const char* option, int& currentIndex, const std::vector<std::string>& options)
+        bool StringArray(const char* option, int& currentIndex, const std::vector<std::string>& options, std::string holder)
         {
             if (options.empty())
                 return false;

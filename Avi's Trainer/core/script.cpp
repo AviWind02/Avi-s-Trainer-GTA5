@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "GUI/menu/menu.h"
 #include "GUI/buttons/buttons.h"
+#include "app/view/view.h"
+#include "app/feature/local/localfeatures.h"
 
 int testInt;
 float testFloat;
@@ -12,7 +14,7 @@ std::vector<std::string> testV
 	"Name2"
 };
 
-void main()
+void run()
 {	
 
 	while (true)
@@ -20,16 +22,7 @@ void main()
 		GUI::menu::Title();
 		GUI::controls::ControlTick();
 		GUI::controls::DisableControls();
-		///////////////////
-
-		GUI::buttons::Option("Basic Option");
-		GUI::buttons::Int("Basic Int Option", &testInt, 0, 100, 5);
-		GUI::buttons::Float("Basic Float Option", &testFloat, 0, 10, .5f);
-		GUI::buttons::Toggle("Basic Toggle", &toggle);
-		GUI::buttons::StringArray("String Array", StringArray, testV);
-
-		///////////////////
-
+		view::local::View();
 		GUI::menu::End();
 		WAIT(0);
 	}
@@ -37,6 +30,6 @@ void main()
 
 void ScriptMain()
 {
-	srand(GetTickCount());
-	main();
+	srand(GetTickCount64());
+	run();
 }

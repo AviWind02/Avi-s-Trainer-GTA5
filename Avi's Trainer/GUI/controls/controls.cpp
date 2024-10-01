@@ -77,16 +77,19 @@ namespace GUI {
 
 
         char GetCharFromVK(int vk) {
+
             BYTE keyboardState[256];
-            GetKeyboardState(keyboardState);
+            if (GetKeyboardState(keyboardState))
+            {
 
-            // Translate the virtual key to a scan code
-            UINT scanCode = MapVirtualKey(vk, MAPVK_VK_TO_VSC);
+                // Translate the virtual key to a scan code
+                UINT scanCode = MapVirtualKey(vk, MAPVK_VK_TO_VSC);
 
-            // Get the character from the virtual key
-            char buffer[2];
-            if (ToAscii(vk, scanCode, keyboardState, (LPWORD)buffer, 0) == 1) {
-                return buffer[0];
+                // Get the character from the virtual key
+                char buffer[2];
+                if (ToAscii(vk, scanCode, keyboardState, (LPWORD)buffer, 0) == 1) {
+                    return buffer[0];
+                }
             }
             return '\0';
         }
@@ -188,7 +191,7 @@ namespace GUI {
                     }
                     else if (PAD::IS_CONTROL_JUST_PRESSED(0, INPUT_CURSOR_ACCEPT))
                     {
-                        selectPressedCursor = true;
+                        //selectPressedCursor = true;
                         keyPressDelayTickCount = currentTick;
                     }
                     else if (IsMouseButtonPressed())

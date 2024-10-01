@@ -4,8 +4,15 @@
     <ClCompile Include="core\main.cpp" />
     <ClCompile Include="core\script.cpp" />
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="core\mem\renderer\renderer.cpp" />
-    <ClCompile Include="core\mem\pointers\pointers.cpp" />
+    <ClCompile Include="GUI\controls\controls.cpp" />
+    <ClCompile Include="GUI\draw\draw.cpp" />
+    <ClCompile Include="GUI\menu\menu.cpp" />
+    <ClCompile Include="GUI\buttons\buttons.cpp" />
+    <ClCompile Include="app\global\player\player.cpp" />
+    <ClCompile Include="app\global\entity\entity.cpp" />
+    <ClCompile Include="app\global\math\math.cpp" />
+    <ClCompile Include="app\feature\local\localfeatures.cpp" />
+    <ClCompile Include="app\view\localview.cpp" />
     <ClCompile Include="vendor\imgui\imgui.cpp" />
     <ClCompile Include="vendor\imgui\imgui_demo.cpp" />
     <ClCompile Include="vendor\imgui\imgui_draw.cpp" />
@@ -13,10 +20,7 @@
     <ClCompile Include="vendor\imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="vendor\imgui\imgui_tables.cpp" />
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="GUI\controls\controls.cpp" />
-    <ClCompile Include="GUI\draw\draw.cpp" />
-    <ClCompile Include="GUI\menu\menu.cpp" />
-    <ClCompile Include="GUI\buttons\buttons.cpp" />
+    <ClCompile Include="core\renderer\renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -32,8 +36,15 @@
     <ClInclude Include="core\types\vector.h" />
     <ClInclude Include="core\types\joaat.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="core\mem\renderer\renderer.hpp" />
-    <ClInclude Include="core\mem\pointers\pointers.hpp" />
+    <ClInclude Include="GUI\controls\controls.h" />
+    <ClInclude Include="GUI\draw\draw.h" />
+    <ClInclude Include="GUI\menu\menu.h" />
+    <ClInclude Include="GUI\buttons\buttons.h" />
+    <ClInclude Include="app\global\player\player.h" />
+    <ClInclude Include="app\global\entity\entity.h" />
+    <ClInclude Include="app\global\math\math.h" />
+    <ClInclude Include="app\feature\local\localfeatures.h" />
+    <ClInclude Include="app\view\view.h" />
     <ClInclude Include="vendor\imgui\imconfig.h" />
     <ClInclude Include="vendor\imgui\imgui.h" />
     <ClInclude Include="vendor\imgui\imgui_impl_dx11.h" />
@@ -42,10 +53,7 @@
     <ClInclude Include="vendor\imgui\imstb_rectpack.h" />
     <ClInclude Include="vendor\imgui\imstb_textedit.h" />
     <ClInclude Include="vendor\imgui\imstb_truetype.h" />
-    <ClInclude Include="GUI\controls\controls.h" />
-    <ClInclude Include="GUI\draw\draw.h" />
-    <ClInclude Include="GUI\menu\menu.h" />
-    <ClInclude Include="GUI\buttons\buttons.h" />
+    <ClInclude Include="core\renderer\renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Script Hook V\lib\ScriptHookV.lib" />

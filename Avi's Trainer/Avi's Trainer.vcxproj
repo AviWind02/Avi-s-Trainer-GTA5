@@ -7,9 +7,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="app\feature\local\localfeatures.cpp" />
+    <ClCompile Include="app\global\entity\entity.cpp" />
+    <ClCompile Include="app\global\math\math.cpp" />
+    <ClCompile Include="app\global\player\player.cpp" />
+    <ClCompile Include="app\view\localview.cpp" />
     <ClCompile Include="core\main.cpp" />
-    <ClCompile Include="core\mem\pointers\pointers.cpp" />
-    <ClCompile Include="core\mem\renderer\renderer.cpp" />
+    <ClCompile Include="core\renderer\renderer.cpp" />
     <ClCompile Include="GUI\buttons\buttons.cpp" />
     <ClCompile Include="GUI\draw\draw.cpp" />
     <ClCompile Include="GUI\menu\menu.cpp" />
@@ -25,8 +29,12 @@
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="core\mem\pointers\pointers.hpp" />
-    <ClInclude Include="core\mem\renderer\renderer.hpp" />
+    <ClInclude Include="app\feature\local\localfeatures.h" />
+    <ClInclude Include="app\global\entity\entity.h" />
+    <ClInclude Include="app\global\math\math.h" />
+    <ClInclude Include="app\global\player\player.h" />
+    <ClInclude Include="app\view\view.h" />
+    <ClInclude Include="core\renderer\renderer.h" />
     <ClInclude Include="GUI\buttons\buttons.h" />
     <ClInclude Include="GUI\draw\draw.h" />
     <ClInclude Include="GUI\menu\menu.h" />
@@ -77,7 +85,7 @@
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.asi</TargetExt>
     <OutDir>bin\$(Configuration)\</OutDir>
-    <IntDir>tmp\$(Configuration)\</IntDir>
+    <IntDir>bin\tmp\$(Configuration)\</IntDir>
     <IncludePath>..\Avi's Trainer;Script Hook V\inc;$(IncludePath)</IncludePath>
     <LibraryPath>Script Hook V\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>

@@ -43,15 +43,17 @@
 #include "Script Hook V/inc/nativeCaller.h"
 
 //ImGui
-//#include <vendor/imgui/imgui.h>
-//#include <vendor/imgui/imgui_impl_dx11.h>
-//#include <vendor/imgui/imgui_impl_win32.h>
-//#include <vendor/imgui/imgui_internal.h>
+#include "core/renderer/renderer.h"
 
 //Core
-//#include "core/pointers/pointers.hpp"
-//#include "core/renderer/renderer.hpp"
+#include "core/types/joaat.h"
 
 //GUI
 #include "GUI/controls/controls.h"
+#include "GUI/buttons/buttons.h"
 
+//Feat
+//Global
+#include "app/global/math/math.h"//Using App name space not really 'Features'
+#include "app/global/player/player.h"
+#include "app/global/entity/entity.h"
