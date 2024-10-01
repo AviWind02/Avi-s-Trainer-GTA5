@@ -4,19 +4,9 @@
 #include "app/view/view.h"
 #include "app/feature/local/localfeatures.h"
 
-int testInt;
-float testFloat;
-bool toggle;
-int StringArray;
-std::vector<std::string> testV
+void ScriptMain()
 {
-	"Name",
-	"Name2"
-};
-
-void run()
-{	
-
+	srand(GetTickCount64());
 	while (true)
 	{
 		GUI::menu::Title();
@@ -26,10 +16,4 @@ void run()
 		GUI::menu::End();
 		WAIT(0);
 	}
-}
-
-void ScriptMain()
-{
-	srand(GetTickCount64());
-	run();
 }
