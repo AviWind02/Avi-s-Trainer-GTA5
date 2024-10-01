@@ -1,14 +1,11 @@
-
-#include <string>
-#include <ctime>
-#include "Script Hook V/inc/main.h"
+#include "pch.h"
 
 void main()
 {	
 
 	while (true)
 	{
-	
+		GUI::controls::DisableControls();
 		WAIT(0);
 	}
 }

@@ -7,6 +7,7 @@
 #pragma once
 
 #include <windows.h>
+#include "core/types/vector.h"
 
 typedef DWORD Void;
 typedef DWORD Any;
@@ -35,14 +36,6 @@ typedef int ColourIndex;
 typedef int Sphere;
 typedef int ScrHandle;
 
-#pragma pack(push, 1)
-typedef struct
-{
-	float x;
-	DWORD _paddingx;
-	float y;
-	DWORD _paddingy;
-	float z;
-	DWORD _paddingz;
-} Vector3;
-#pragma pack(pop)
+using Vector2 = core::Vector2;
+using Vector3 = core::Vector3;
+using Vector4 = core::Vector4;
