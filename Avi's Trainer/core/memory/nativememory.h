@@ -3,7 +3,9 @@ namespace core::memory {
     namespace nativememory {
 
         inline uintptr_t(*GetAddressOfEntity)(int entity) = nullptr;
-        inline uintptr_t(*GetModelInfo)(unsigned int modelHash, int* index) = nullptr;
+        inline std::uint64_t(*GetModelInfo)(unsigned int modelHash, int* index) = nullptr;
+
+        inline std::uint64_t getModelInfo{};
 
         // Gear offsets
         inline int nextGearOffset{ 0 };

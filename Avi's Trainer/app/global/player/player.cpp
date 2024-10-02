@@ -86,6 +86,35 @@ namespace feature {
         bool IsPedAPlayer(Ped ped) {
             return PED::IS_PED_A_PLAYER(ped);
         }
+        float GetPlayerDir()
+        {
+            return ENTITY::GET_ENTITY_HEADING(GetPlayerPed());
+        }
+
+        Vector3 GetCoordsInFrontOfPlayer(Ped playerPed, float distance)
+        {
+            Vector3 playerCoords = ENTITY::GET_ENTITY_COORDS(playerPed, true);
+            float xOffset = distance * sin(app::math::DegreeToRadian(GetPlayerDir())) * -1.f;
+            float yOffset = distance * cos(app::math::DegreeToRadian(GetPlayerDir()));
+            return { (playerCoords.x + xOffset), (playerCoords.y + yOffset), playerCoords.z };
+        }
+
+        void SeatPlayerInVehicle(Ped playerPed, Vehicle vehicle)
+        {
+            if (!ENTITY::DOES_ENTITY_EXIST(vehicle))
+                return;
+
+            int maxSeats = VEHICLE::GET_VEHICLE_MAX_NUMBER_OF_PASSENGERS(vehicle);
+            for (int seatIndex = -1; seatIndex <= maxSeats; ++seatIndex)
+            {
+                if (VEHICLE::IS_VEHICLE_SEAT_FREE(vehicle, seatIndex, false))
+                {
+                    PED::SET_PED_INTO_VEHICLE(playerPed, vehicle, seatIndex);
+                    return;
+                }
+            }
+
+        }
 
     }
 }

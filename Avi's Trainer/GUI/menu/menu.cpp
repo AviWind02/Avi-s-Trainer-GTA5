@@ -39,6 +39,8 @@ namespace GUI {
         float screenWidth = 1920.0f;
         float screenHeight = 1080.0f;
 
+        std::string subTitle = "Avi";
+        bool onLoad = true;
 
         // Debug variables
         Vector2 debugMouseCoords = { 0.0f, 0.0f };
@@ -89,7 +91,7 @@ namespace GUI {
         bool SetOption(const char* leftText, const char* centerText, const char* rightText)
         {
             controls::optionCount++;
-
+            bool lClickOnMouse = false;
             int startOption = (controls::currentOption - 1) / maxOptions * maxOptions + 1;
             int endOption = startOption + maxOptions - 1;
 
@@ -112,6 +114,7 @@ namespace GUI {
                         HUD::_SET_MOUSE_CURSOR_SPRITE(MOUSE_MiddleFinger);
 
                         if (PAD::IS_DISABLED_CONTROL_PRESSED(0, 237)) {
+                            lClickOnMouse = true;
                             controls::currentOption = hoveredOption;
                         }
 
@@ -154,7 +157,7 @@ namespace GUI {
                     draw::Rect_Center(colours::scrollerColor, { menuPosition.x, smoothScrollYPosition }, optionSize);
 
 
-                    if (controls::selectPressed) {
+                    if (controls::selectPressed || lClickOnMouse) {
                         return true;
                     }
                 }
@@ -227,6 +230,11 @@ namespace GUI {
             debugMenuPosition = menuPosition;
         }
 
+        void SetSubTitle(std::string title)
+        {
+            subTitle = title;
+        }
+
         void Title()
         {
 
@@ -271,15 +279,241 @@ namespace GUI {
 
             int totalPages = (controls::optionCount + maxOptions - 1) / maxOptions;
             char footerText[32];
-            snprintf(footerText, sizeof(footerText), "Page %d/%d", currentPage, totalPages);
-            std::string lText = (controls::cursorVisible ? "Cursor: On | " : "");
+            snprintf(footerText, sizeof(footerText), "Page %d/%d | #%d", currentPage, totalPages, controls::currentOption);
             Vector2 leftTextPos = { menuPosition.x - footerTextOffset.x, endPos.y - optionSize.y / 2.0f + footerTextOffset.y };
-            draw::Text((lText + "v2").c_str(), colours::optionText, leftTextPos, { textScale, textScale }, false, false);
+            draw::Text(("v2.0 | " + subTitle).c_str(), colours::optionText, leftTextPos, { textScale, textScale }, false, false);
 
             Vector2 rightTextPos = { menuPosition.x + footerTextOffset.x, endPos.y - optionSize.y / 2.0f + footerTextOffset.y };
             draw::Text(footerText, colours::optionText, rightTextPos, { textScale, textScale }, false, true);
         }
 
+
+
+
+
+        void SaveSettings()
+        {
+            using namespace colours;
+            using namespace core::inihandler;
+            const std::string iniFile = "Avi\\Avi.ini";
+
+            // Save float settings
+            WriteFloatToIni(menuPosition.x, iniFile, "Menu", "MenuPositionX");
+            WriteFloatToIni(menuPosition.y, iniFile, "Menu", "MenuPositionY");
+            WriteFloatToIni(optionSize.x, iniFile, "Menu", "OptionSizeX");
+            WriteFloatToIni(optionSize.y, iniFile, "Menu", "OptionSizeY");
+            WriteFloatToIni(optionOffset.x, iniFile, "Menu", "OptionOffsetX");
+            WriteFloatToIni(optionOffset.y, iniFile, "Menu", "OptionOffsetY");
+            WriteFloatToIni(headerSize.x, iniFile, "Menu", "HeaderSizeX");
+            WriteFloatToIni(headerSize.y, iniFile, "Menu", "HeaderSizeY");
+            WriteFloatToIni(headerTextOffset.x, iniFile, "Menu", "HeaderTextOffsetX");
+            WriteFloatToIni(headerTextOffset.y, iniFile, "Menu", "HeaderTextOffsetY");
+            WriteFloatToIni(footerSize.x, iniFile, "Menu", "FooterSizeX");
+            WriteFloatToIni(footerSize.y, iniFile, "Menu", "FooterSizeY");
+            WriteFloatToIni(textOffset.x, iniFile, "Menu", "TextOffsetX");
+            WriteFloatToIni(textOffset.y, iniFile, "Menu", "TextOffsetY");
+            WriteFloatToIni(rightTextOffset.x, iniFile, "Menu", "RightTextOffsetX");
+            WriteFloatToIni(rightTextOffset.y, iniFile, "Menu", "RightTextOffsetY");
+            WriteFloatToIni(footerTextOffset.x, iniFile, "Menu", "FooterTextOffsetX");
+            WriteFloatToIni(footerTextOffset.y, iniFile, "Menu", "FooterTextOffsetY");
+            WriteFloatToIni(spriteOffset.x, iniFile, "Menu", "SpriteOffsetX");
+            WriteFloatToIni(spriteOffset.y, iniFile, "Menu", "SpriteOffsetY");
+            WriteFloatToIni(scrollerY, iniFile, "Menu", "ScrollerY");
+            WriteFloatToIni(scrollerSpeed, iniFile, "Menu", "ScrollerSpeed");
+            WriteFloatToIni(textScale, iniFile, "Menu", "TextScale");
+
+            // Save color settings (convert color components to int and save)
+            WriteIntToIni(optionText.r, iniFile, "Color", "OptionTextR");
+            WriteIntToIni(optionText.g, iniFile, "Color", "OptionTextG");
+            WriteIntToIni(optionText.b, iniFile, "Color", "OptionTextB");
+            WriteIntToIni(optionText.a, iniFile, "Color", "OptionTextA");
+
+            WriteIntToIni(optionRect.r, iniFile, "Color", "OptionRectR");
+            WriteIntToIni(optionRect.g, iniFile, "Color", "OptionRectG");
+            WriteIntToIni(optionRect.b, iniFile, "Color", "OptionRectB");
+            WriteIntToIni(optionRect.a, iniFile, "Color", "OptionRectA");
+
+            WriteIntToIni(scrollerColor.r, iniFile, "Color", "ScrollerColorR");
+            WriteIntToIni(scrollerColor.g, iniFile, "Color", "ScrollerColorG");
+            WriteIntToIni(scrollerColor.b, iniFile, "Color", "ScrollerColorB");
+            WriteIntToIni(scrollerColor.a, iniFile, "Color", "ScrollerColorA");
+
+            WriteIntToIni(scrollerColorHover.r, iniFile, "Color", "ScrollerColorHoverR");
+            WriteIntToIni(scrollerColorHover.g, iniFile, "Color", "ScrollerColorHoverG");
+            WriteIntToIni(scrollerColorHover.b, iniFile, "Color", "ScrollerColorHoverB");
+            WriteIntToIni(scrollerColorHover.a, iniFile, "Color", "ScrollerColorHoverA");
+
+            WriteIntToIni(hoverColor.r, iniFile, "Color", "HoverColorR");
+            WriteIntToIni(hoverColor.g, iniFile, "Color", "HoverColorG");
+            WriteIntToIni(hoverColor.b, iniFile, "Color", "HoverColorB");
+            WriteIntToIni(hoverColor.a, iniFile, "Color", "HoverColorA");
+
+            WriteIntToIni(toggleOff.r, iniFile, "Color", "ToggleOffR");
+            WriteIntToIni(toggleOff.g, iniFile, "Color", "ToggleOffG");
+            WriteIntToIni(toggleOff.b, iniFile, "Color", "ToggleOffB");
+            WriteIntToIni(toggleOff.a, iniFile, "Color", "ToggleOffA");
+
+            WriteIntToIni(toggleOn.r, iniFile, "Color", "ToggleOnR");
+            WriteIntToIni(toggleOn.g, iniFile, "Color", "ToggleOnG");
+            WriteIntToIni(toggleOn.b, iniFile, "Color", "ToggleOnB");
+            WriteIntToIni(toggleOn.a, iniFile, "Color", "ToggleOnA");
+
+            WriteIntToIni(footerRect.r, iniFile, "Color", "FooterRectR");
+            WriteIntToIni(footerRect.g, iniFile, "Color", "FooterRectG");
+            WriteIntToIni(footerRect.b, iniFile, "Color", "FooterRectB");
+            WriteIntToIni(footerRect.a, iniFile, "Color", "FooterRectA");
+
+            WriteIntToIni(headerRect.r, iniFile, "Color", "HeaderRectR");
+            WriteIntToIni(headerRect.g, iniFile, "Color", "HeaderRectG");
+            WriteIntToIni(headerRect.b, iniFile, "Color", "HeaderRectB");
+            WriteIntToIni(headerRect.a, iniFile, "Color", "HeaderRectA");
+        }
+
+
+        void LoadSettings()
+        {
+
+            if (!onLoad) return;
+
+            using namespace colours;
+            using namespace core::inihandler;
+            namespace fs = std::filesystem;
+
+
+            const std::string iniFile = "Avi\\Avi.ini";
+            if (fs::exists(iniFile) && fs::is_regular_file(iniFile))
+            {
+                // Load float settings
+                menuPosition.x = ReadFloatFromIni(iniFile, "Menu", "MenuPositionX");
+                menuPosition.y = ReadFloatFromIni(iniFile, "Menu", "MenuPositionY");
+                optionSize.x = ReadFloatFromIni(iniFile, "Menu", "OptionSizeX");
+                optionSize.y = ReadFloatFromIni(iniFile, "Menu", "OptionSizeY");
+                optionOffset.x = ReadFloatFromIni(iniFile, "Menu", "OptionOffsetX");
+                optionOffset.y = ReadFloatFromIni(iniFile, "Menu", "OptionOffsetY");
+                headerSize.x = ReadFloatFromIni(iniFile, "Menu", "HeaderSizeX");
+                headerSize.y = ReadFloatFromIni(iniFile, "Menu", "HeaderSizeY");
+                headerTextOffset.x = ReadFloatFromIni(iniFile, "Menu", "HeaderTextOffsetX");
+                headerTextOffset.y = ReadFloatFromIni(iniFile, "Menu", "HeaderTextOffsetY");
+                footerSize.x = ReadFloatFromIni(iniFile, "Menu", "FooterSizeX");
+                footerSize.y = ReadFloatFromIni(iniFile, "Menu", "FooterSizeY");
+                textOffset.x = ReadFloatFromIni(iniFile, "Menu", "TextOffsetX");
+                textOffset.y = ReadFloatFromIni(iniFile, "Menu", "TextOffsetY");
+                rightTextOffset.x = ReadFloatFromIni(iniFile, "Menu", "RightTextOffsetX");
+                rightTextOffset.y = ReadFloatFromIni(iniFile, "Menu", "RightTextOffsetY");
+                footerTextOffset.x = ReadFloatFromIni(iniFile, "Menu", "FooterTextOffsetX");
+                footerTextOffset.y = ReadFloatFromIni(iniFile, "Menu", "FooterTextOffsetY");
+                spriteOffset.x = ReadFloatFromIni(iniFile, "Menu", "SpriteOffsetX");
+                spriteOffset.y = ReadFloatFromIni(iniFile, "Menu", "SpriteOffsetY");
+                scrollerY = ReadFloatFromIni(iniFile, "Menu", "ScrollerY");
+                scrollerSpeed = ReadFloatFromIni(iniFile, "Menu", "ScrollerSpeed");
+                textScale = ReadFloatFromIni(iniFile, "Menu", "TextScale");
+
+                // Load color settings
+                optionText = {
+                    ReadIntFromIni(iniFile, "Color", "OptionTextR"),
+                    ReadIntFromIni(iniFile, "Color", "OptionTextG"),
+                    ReadIntFromIni(iniFile, "Color", "OptionTextB"),
+                    ReadIntFromIni(iniFile, "Color", "OptionTextA")
+                };
+
+                optionRect = {
+                    ReadIntFromIni(iniFile, "Color", "OptionRectR"),
+                    ReadIntFromIni(iniFile, "Color", "OptionRectG"),
+                    ReadIntFromIni(iniFile, "Color", "OptionRectB"),
+                    ReadIntFromIni(iniFile, "Color", "OptionRectA")
+                };
+
+                scrollerColor = {
+                    ReadIntFromIni(iniFile, "Color", "ScrollerColorR"),
+                    ReadIntFromIni(iniFile, "Color", "ScrollerColorG"),
+                    ReadIntFromIni(iniFile, "Color", "ScrollerColorB"),
+                    ReadIntFromIni(iniFile, "Color", "ScrollerColorA")
+                };
+
+                scrollerColorHover = {
+                    ReadIntFromIni(iniFile, "Color", "ScrollerColorHoverR"),
+                    ReadIntFromIni(iniFile, "Color", "ScrollerColorHoverG"),
+                    ReadIntFromIni(iniFile, "Color", "ScrollerColorHoverB"),
+                    ReadIntFromIni(iniFile, "Color", "ScrollerColorHoverA")
+                };
+
+                hoverColor = {
+                    ReadIntFromIni(iniFile, "Color", "HoverColorR"),
+                    ReadIntFromIni(iniFile, "Color", "HoverColorG"),
+                    ReadIntFromIni(iniFile, "Color", "HoverColorB"),
+                    ReadIntFromIni(iniFile, "Color", "HoverColorA")
+                };
+
+                toggleOff = {
+                    ReadIntFromIni(iniFile, "Color", "ToggleOffR"),
+                    ReadIntFromIni(iniFile, "Color", "ToggleOffG"),
+                    ReadIntFromIni(iniFile, "Color", "ToggleOffB"),
+                    ReadIntFromIni(iniFile, "Color", "ToggleOffA")
+                };
+
+                toggleOn = {
+                    ReadIntFromIni(iniFile, "Color", "ToggleOnR"),
+                    ReadIntFromIni(iniFile, "Color", "ToggleOnG"),
+                    ReadIntFromIni(iniFile, "Color", "ToggleOnB"),
+                    ReadIntFromIni(iniFile, "Color", "ToggleOnA")
+                };
+
+                footerRect = {
+                    ReadIntFromIni(iniFile, "Color", "FooterRectR"),
+                    ReadIntFromIni(iniFile, "Color", "FooterRectG"),
+                    ReadIntFromIni(iniFile, "Color", "FooterRectB"),
+                    ReadIntFromIni(iniFile, "Color", "FooterRectA")
+                };
+
+                headerRect = {
+                    ReadIntFromIni(iniFile, "Color", "HeaderRectR"),
+                    ReadIntFromIni(iniFile, "Color", "HeaderRectG"),
+                    ReadIntFromIni(iniFile, "Color", "HeaderRectB"),
+                    ReadIntFromIni(iniFile, "Color", "HeaderRectA")
+                };
+                LOG << "Loaded Settings config";
+                onLoad = false;
+            }
+        }
+
+
+
+
+        void DebugMenuView()
+        {
+            if(buttons::Option("Save Settings"))
+                SaveSettings();
+
+            // Menu Position
+            buttons::Float("Menu Position X", &menuPosition.x, 0.0f, 2.5f, .05f);
+            buttons::Float("Menu Position Y", &menuPosition.y, 0.0f, 2.5f, .05f);
+            buttons::Float("Option Size X", &optionSize.x, 0.0f, 2.5f, .05f);
+            buttons::Float("Option Size Y", &optionSize.y, 0.0f, 2.5f, .05f);
+            buttons::Float("Option Offset X", &optionOffset.x, 0.0f, 2.5f, .05f);
+            buttons::Float("Option Offset Y", &optionOffset.y, 0.0f, 2.5f, .05f);
+            buttons::Float("Header Size X", &headerSize.x, 0.0f, 2.5f, .05f);
+            buttons::Float("Header Size Y", &headerSize.y, 0.0f, 2.5f, .05f);
+            buttons::Float("Header Text Offset X", &headerTextOffset.x, 0.0f, 2.5f, .05f);
+            buttons::Float("Header Text Offset Y", &headerTextOffset.y, 0.0f, 2.5f, .05f);
+            buttons::Float("Footer Size X", &footerSize.x, 0.0f, 2.5f, .05f);
+            buttons::Float("Footer Size Y", &footerSize.y, 0.0f, 2.5f, .05f);
+            buttons::Float("Text Offset X", &textOffset.x, 0.0f, 2.5f, .05f);
+            buttons::Float("Text Offset Y", &textOffset.y, 0.0f, 2.5f, .05f);
+            buttons::Float("Right Text Offset X", &rightTextOffset.x, 0.0f, 2.5f, .05f);
+            buttons::Float("Right Text Offset Y", &rightTextOffset.y, 0.0f, 2.5f, .05f);
+            buttons::Float("Footer Text Offset X", &footerTextOffset.x, 0.0f, 2.5f, .05f);
+            buttons::Float("Footer Text Offset Y", &footerTextOffset.y, 0.0f, 2.5f, .05f);
+            buttons::Float("Sprite Offset X", &spriteOffset.x, 0.0f, 2.5f, .05f);
+            GUI::menu::SetSpriteOnOption("commonmenu", "common_medal", { 0.015f, 0.025f }, 1.f, Colour(255, 255, 255, 255));
+            buttons::Float("Sprite Offset Y", &spriteOffset.y, 0.0f, 2.5f, .05f);
+            GUI::menu::SetSpriteOnOption("commonmenu", "arrowright", { 0.015f, 0.025f }, 1.f, Colour(255, 255, 255, 255));
+            // Scroller
+            buttons::Float("Scroller Y", &scrollerY, 0.0f, 2.5f, .05f);
+            buttons::Float("Scroller Speed", &scrollerSpeed, 0.0f, 2.5f, .05f);
+            buttons::Float("Text Scale", &textScale, 0.0f, 2.5f, .05f);
+
+            
+        }
 
         void DebugMenu()
         {

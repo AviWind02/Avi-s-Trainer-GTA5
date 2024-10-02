@@ -1,4 +1,8 @@
 #include "pch.h"
+
+#include "controls.h"
+#include "GUI/menu/menu.h"
+
 #include <vendor/imgui/imgui.h>
 
 // This is the control(key) file. 
@@ -51,14 +55,14 @@ namespace GUI {
         bool IsDownArrowPressed() { return IsKeyPressed(VK_DOWN) || IsKeyPressed(VK_NUMPAD2) || PAD::IS_CONTROL_JUST_PRESSED(0, INPUT_FRONTEND_DOWN); }
         bool IsRightArrowPressed() { return IsKeyPressed(VK_RIGHT) || IsKeyPressed(VK_NUMPAD6) || PAD::IS_CONTROL_JUST_PRESSED(0, INPUT_FRONTEND_RIGHT); }
         bool IsLeftArrowPressed() { return IsKeyPressed(VK_LEFT) || IsKeyPressed(VK_NUMPAD4) || PAD::IS_CONTROL_JUST_PRESSED(0, INPUT_FRONTEND_LEFT); }
-        bool IsSelectKeyPressed() { return IsKeyPressed(VK_RETURN) || IsKeyPressed(VK_NUMPAD5) || PAD::IS_CONTROL_JUST_PRESSED(0, INPUT_FRONTEND_ACCEPT | INPUT_CURSOR_ACCEPT); }
+        bool IsSelectKeyPressed() { return IsKeyPressed(VK_RETURN) || IsKeyPressed(VK_NUMPAD5) || PAD::IS_CONTROL_JUST_PRESSED(0, INPUT_FRONTEND_ACCEPT); }
         bool IsBackKeyPressed() { return IsKeyPressed(VK_BACK) || IsKeyPressed(VK_NUMPAD0) || PAD::IS_CONTROL_JUST_PRESSED(0, INPUT_FRONTEND_CANCEL); }
 
 
         static constexpr int maxSubMenuLevels = 250;
         pages::SubMenu subMenuArray[maxSubMenuLevels];
         int subMenuLevel = 0;
-        pages::SubMenu currentSubMenu = pages::base_sub;
+        pages::SubMenu currentSubMenu = pages::mainmenu_page;
 
         void NextSubmenu(pages::SubMenu menu) {
             if (subMenuLevel < maxSubMenuLevels) {
@@ -108,14 +112,14 @@ namespace GUI {
         void GetUserInput(const char* option, char* userInput, int maxLength, bool* enterpressed) {
             int currentCharIndex = strlen(userInput);
 
-            //UI::SetOption(option, NULL, userInput);
+            menu::SetOption(option, NULL, userInput);
             if (currentOption == optionCount)
             {
                 usingInMenuKeyboard = true;
                 uint64_t currentTick = GetTickCount64();
                 if (currentTick - keyPressDelayTickCount > 150) {
                     //Check for input
-                    if (IsKeyPressed(VK_BACK)) { //Enter key
+                    if (IsKeyPressed(VK_ACCEPT)) { //Enter key
                         *enterpressed = true;
                         keyPressDelayTickCount = currentTick;
                     }
@@ -180,7 +184,7 @@ namespace GUI {
                         selectPressed = true;
                         keyPressDelayTickCount = currentTick;
                     }
-                    else if (IsBackKeyPressed())
+                    else if (IsBackKeyPressed() && !usingInMenuKeyboard)
                     {
                         BackSubmenu();
                         keyPressDelayTickCount = currentTick;

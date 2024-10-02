@@ -133,13 +133,13 @@ namespace feature {
                 if (neverWantedLevel) {
                     holdWantedLevel = false;
                     alwaysWantedLevel = false;
-                    if (PLAYER::IS_PLAYER_WANTED_LEVEL_GREATER(g_player::GetPlayerPed(), 0)) {
+                    if (PLAYER::IS_PLAYER_WANTED_LEVEL_GREATER(g_player::GetPlayerID(), 0)) {
                         AdjustLevel(0);
                     }
                 }
 
                 if (holdWantedLevel) {
-                    if (PLAYER::IS_PLAYER_WANTED_LEVEL_GREATER(g_player::GetPlayerPed(), 0)) {
+                    if (PLAYER::IS_PLAYER_WANTED_LEVEL_GREATER(g_player::GetPlayerID(), 0)) {
                         AdjustLevel(PLAYER::GET_PLAYER_WANTED_LEVEL(g_player::GetPlayerID()));
                         editWantedLevel = false;
                     }
@@ -312,7 +312,7 @@ namespace feature {
                 Seatbelt::Tick();
                 Noclip::Tick();
                 IgnorePlayer::Tick();
-                WAIT(100);
+                WAIT(0);
             }
         }
         

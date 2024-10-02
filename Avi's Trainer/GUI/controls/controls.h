@@ -2,15 +2,19 @@
 namespace pages
 {
     enum SubMenu {
-        base_sub,
-
-        VehicleView_VehicleCategories,
-        VehicleView_VehicleCategories_Picked,
-    };
+        mainmenu_page,
+        local_page,
+        VehicleSpawner_page,
+        VehicleSpawner_Picked_page,
+        setting_page,
+    }; 
 }
 
 namespace GUI {
     namespace controls {
+        
+        extern pages::SubMenu currentSubMenu;
+
         extern bool cursorVisible;
         extern bool leftPressed;
         extern bool rightPressed;

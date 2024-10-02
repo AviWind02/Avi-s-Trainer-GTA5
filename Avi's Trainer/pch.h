@@ -49,6 +49,7 @@
 #include "core/types/joaat.h"
 #include "core/logger/logger.h"
 #include "core/memory/patterns.h"
+#include "core/fs/filesystem.h"
 
 //GUI
 #include "GUI/controls/controls.h"
@@ -59,6 +60,7 @@
 #include "app/global/math/math.h"//Using App name space not really 'Features'
 #include "app/global/player/player.h"
 #include "app/global/entity/entity.h"
+#include "app/global/vehicle/vehicle.h"
 
 
 using namespace Logger_c;

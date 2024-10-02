@@ -27,7 +27,9 @@ namespace feature {
         bool IsPedAimingFromCover(Ped ped);
         bool IsPedReloading(Ped ped);
         bool IsPedAPlayer(Ped ped);
-
+        Vector3 GetCoordsInFrontOfPlayer(Ped playerPed, float distance);
+        void SeatPlayerInVehicle(Ped playerPed, Vehicle vehicle);
+        float GetPlayerDir();
     }
 }
 

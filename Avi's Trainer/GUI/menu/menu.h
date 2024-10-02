@@ -38,8 +38,12 @@ namespace GUI {
         void Title();
         void End();
 
+        void SetSubTitle(std::string title);
 
         void DebugMenu();
+        void DebugMenuView();
 
+        void SaveSettings();
+        void LoadSettings();
     }
 }

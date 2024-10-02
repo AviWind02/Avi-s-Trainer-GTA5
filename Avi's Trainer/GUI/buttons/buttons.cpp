@@ -10,6 +10,13 @@ namespace GUI {
             return GUI::menu::SetOption(Opiton, NULL, NULL);
         }
 
+        bool OptionInput(const char* option, char* userInput, int maxLength, bool* enterpressed)
+        {
+            controls::GetUserInput(option, userInput, maxLength, enterpressed);
+
+            return false;
+        }
+
         //Sets the bool value to true on click
         bool Option(const char* Opiton, bool* value, std::string holder)
         {
