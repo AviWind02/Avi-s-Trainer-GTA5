@@ -79,7 +79,8 @@ namespace core::memory {
 
             }
 
-            {//Musci
+            {//misc
+
                 address = FindPattern("\xF3\x0F\x11\x9B\xDC\x09\x00\x00\x0F\x84\xB1\x00\x00\x00", "xxxx????xxx???");
                 engineTempOffset = address == 0 ? 0 : *(int*)(address + 4);
                 LOG_TAG(engineTempOffset == 0 ? "WARN" : "Debug") << "Engine Temperature Offset: " << engineTempOffset;
