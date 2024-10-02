@@ -21,6 +21,9 @@
     <ClCompile Include="vendor\imgui\imgui_tables.cpp" />
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
     <ClCompile Include="core\renderer\renderer.cpp" />
+    <ClCompile Include="core\logger\logger.cpp" />
+    <ClCompile Include="core\memory\patterns.cpp" />
+    <ClCompile Include="core\memory\nativememory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -54,6 +57,9 @@
     <ClInclude Include="vendor\imgui\imstb_textedit.h" />
     <ClInclude Include="vendor\imgui\imstb_truetype.h" />
     <ClInclude Include="core\renderer\renderer.h" />
+    <ClInclude Include="core\logger\logger.h" />
+    <ClInclude Include="core\memory\patterns.h" />
+    <ClInclude Include="core\memory\nativememory.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Script Hook V\lib\ScriptHookV.lib" />

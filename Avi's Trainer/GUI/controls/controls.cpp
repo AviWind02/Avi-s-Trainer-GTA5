@@ -1,4 +1,5 @@
 #include "pch.h"
+#include <vendor/imgui/imgui.h>
 
 // This is the control(key) file. 
 // Not sure what to add
@@ -149,6 +150,11 @@ namespace GUI {
             rightPressed = false;
             selectPressed = false;
             selectPressedCursor = false;
+
+        /*    if (cursorVisible) {
+                ImGui::GetIO().MouseDown[0] = PAD::IS_CONTROL_JUST_PRESSED(0, INPUT_CURSOR_ACCEPT);
+                ImGui::GetIO().MouseDown[1] = PAD::IS_CONTROL_JUST_PRESSED(0, INPUT_CURSOR_CANCEL);
+            }*/
 
             if (currentTick - keyPressDelayTickCount > keyPressDelay)
             {

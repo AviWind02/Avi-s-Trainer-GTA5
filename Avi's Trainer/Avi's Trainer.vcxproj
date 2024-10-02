@@ -12,7 +12,10 @@
     <ClCompile Include="app\global\math\math.cpp" />
     <ClCompile Include="app\global\player\player.cpp" />
     <ClCompile Include="app\view\localview.cpp" />
+    <ClCompile Include="core\logger\logger.cpp" />
     <ClCompile Include="core\main.cpp" />
+    <ClCompile Include="core\memory\nativememory.cpp" />
+    <ClCompile Include="core\memory\patterns.cpp" />
     <ClCompile Include="core\renderer\renderer.cpp" />
     <ClCompile Include="GUI\buttons\buttons.cpp" />
     <ClCompile Include="GUI\draw\draw.cpp" />
@@ -34,6 +37,9 @@
     <ClInclude Include="app\global\math\math.h" />
     <ClInclude Include="app\global\player\player.h" />
     <ClInclude Include="app\view\view.h" />
+    <ClInclude Include="core\logger\logger.h" />
+    <ClInclude Include="core\memory\nativememory.h" />
+    <ClInclude Include="core\memory\patterns.h" />
     <ClInclude Include="core\renderer\renderer.h" />
     <ClInclude Include="GUI\buttons\buttons.h" />
     <ClInclude Include="GUI\draw\draw.h" />

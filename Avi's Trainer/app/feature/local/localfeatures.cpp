@@ -205,23 +205,23 @@ namespace feature {
                 }
 
                 if (swimmingIndex > 1.f) {
-                    PLAYER::SET_SWIM_MULTIPLIER_FOR_PLAYER(g_player::GetPlayerPed(), swimmingIndex);
+                    PLAYER::SET_SWIM_MULTIPLIER_FOR_PLAYER(g_player::GetPlayerID(), swimmingIndex);//Max is 1.5f Need to get ptr
                     tickFastSwimReset = true;
                 }
                 else {
                     if (tickFastSwimReset) {
-                        PLAYER::SET_SWIM_MULTIPLIER_FOR_PLAYER(g_player::GetPlayerPed(), 1.f);
+                        PLAYER::SET_SWIM_MULTIPLIER_FOR_PLAYER(g_player::GetPlayerID(), 1.f);
                         tickFastSwimReset = false;
                     }
                 }
 
                 if (runningIndex > 1.f) {
-                    PLAYER::SET_RUN_SPRINT_MULTIPLIER_FOR_PLAYER(g_player::GetPlayerPed(), runningIndex);
+                    PLAYER::SET_RUN_SPRINT_MULTIPLIER_FOR_PLAYER(g_player::GetPlayerID(), runningIndex);
                     tickFastRunReset = true;
                 }
                 else {
                     if (tickFastRunReset) {
-                        PLAYER::SET_RUN_SPRINT_MULTIPLIER_FOR_PLAYER(g_player::GetPlayerPed(), 1.f);
+                        PLAYER::SET_RUN_SPRINT_MULTIPLIER_FOR_PLAYER(g_player::GetPlayerID(), 1.f);
                         tickFastRunReset = false;
                     }
                 }
@@ -298,7 +298,6 @@ namespace feature {
             }
         }
 
-
         void LocalThread() {
             srand(GetTickCount64());
             while (true)
@@ -315,8 +314,7 @@ namespace feature {
                 IgnorePlayer::Tick();
                 WAIT(100);
             }
-     
         }
-
-	}
-}
+        
+	}//Local
+}//Feat

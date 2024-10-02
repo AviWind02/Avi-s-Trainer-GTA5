@@ -3,8 +3,9 @@
 #include "GUI/buttons/buttons.h"
 #include "app/view/view.h"
 #include "app/feature/local/localfeatures.h"
+#include "core/memory/nativememory.h"
 
-void ScriptMain()
+void MenuUI()
 {
 	srand(GetTickCount64());
 	while (true)
@@ -16,4 +17,10 @@ void ScriptMain()
 		GUI::menu::End();
 		WAIT(0);
 	}
+}
+
+void ScriptMain()
+{
+	core::memory::nativememory::InitOffsets();
+	MenuUI();
 }

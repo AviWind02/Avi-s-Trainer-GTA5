@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "menu.h"
+#include <vendor/imgui/imgui.h>
 // This page has the main menu elements the core you can say. 
 //Here is where the Title, Option, and other UI methods are
 
@@ -62,7 +63,7 @@ namespace GUI {
         }
 
         Vector2 GetScreenCoords(float normalizedX, float normalizedY) {
-            Vector2 screenCoords{0.f, 0.f};
+            Vector2 screenCoords{ 0.f, 0.f };
             screenCoords.x = normalizedX * screenWidth;
             screenCoords.y = normalizedY * screenHeight;
             return screenCoords;
@@ -273,13 +274,94 @@ namespace GUI {
             snprintf(footerText, sizeof(footerText), "Page %d/%d", currentPage, totalPages);
             std::string lText = (controls::cursorVisible ? "Cursor: On | " : "");
             Vector2 leftTextPos = { menuPosition.x - footerTextOffset.x, endPos.y - optionSize.y / 2.0f + footerTextOffset.y };
-            draw::Text((lText + "v2").c_str(), colours::optionText, leftTextPos, {textScale, textScale}, false, false);
+            draw::Text((lText + "v2").c_str(), colours::optionText, leftTextPos, { textScale, textScale }, false, false);
 
             Vector2 rightTextPos = { menuPosition.x + footerTextOffset.x, endPos.y - optionSize.y / 2.0f + footerTextOffset.y };
             draw::Text(footerText, colours::optionText, rightTextPos, { textScale, textScale }, false, true);
         }
-    }
-}
+
+
+        void DebugMenu()
+        {
+            ImGui::Begin("Adjustment Debug Menu");
+
+            // Menu Position
+            ImGui::DragFloat("Menu Position X", &menuPosition.x, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Menu Position Y", &menuPosition.y, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Option Size X", &optionSize.x, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Option Size Y", &optionSize.y, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Option Offset X", &optionOffset.x, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Option Offset Y", &optionOffset.y, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Header Size X", &headerSize.x, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Header Size Y", &headerSize.y, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Header Text Offset X", &headerTextOffset.x, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Header Text Offset Y", &headerTextOffset.y, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Footer Size X", &footerSize.x, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Footer Size Y", &footerSize.y, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Text Offset X", &textOffset.x, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Text Offset Y", &textOffset.y, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Right Text Offset X", &rightTextOffset.x, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Right Text Offset Y", &rightTextOffset.y, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Footer Text Offset X", &footerTextOffset.x, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Footer Text Offset Y", &footerTextOffset.y, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Sprite Offset X", &spriteOffset.x, 0.0001f, -1.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Sprite Offset Y", &spriteOffset.y, 0.0001f, -1.0f, 1.0f, "%.4f");
+
+            // Scroller
+            ImGui::DragFloat("Scroller Y", &scrollerY, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Scroller Speed", &scrollerSpeed, 0.0001f, 0.0f, 1.0f, "%.4f");
+            ImGui::DragFloat("Text Scale", &textScale, 0.0001f, 0.0f, 1.0f, "%.4f");
+
+            ImGui::End();
+
+            // Start the ImGui window
+            ImGui::Begin("Mouse Coordinates Debug");
+
+            ImGui::Text("Mouse Position (Normalized):");
+            ImGui::Text("X: %.4f, Y: %.4f", debugMouseCoords.x, debugMouseCoords.y);
+
+            ImGui::Text("Mouse Position (Screen):");
+            ImGui::Text("X: %.2f, Y: %.2f", debugMouseScreenCoords.x, debugMouseScreenCoords.y);
+
+            ImGui::Text("Is Dragging: %s", debugIsDragging ? "True" : "False");
+
+            ImGui::Text("Drag Offset:");
+            ImGui::Text("X: %.2f, Y: %.2f", debugDragOffset.x, debugDragOffset.y);
+
+            ImGui::Text("Menu Position:");
+            ImGui::Text("X: %.2f, Y: %.2f", debugMenuPosition.x, debugMenuPosition.y);
+            ImGui::Separator();
+            ImGui::Text("Mouse Option Debug:");
+            ImGui::Text("Mouse in Option: %s", debugMouseInOption ? "Yes" : "No");
+            ImGui::Text("Hovered Option: %d", debugHoveredOption);
+            ImGui::Text("Mouse Distance from Option: %.4f", debugMouseDistanceFromOption);
+
+            // End the ImGui window
+            ImGui::End();
+        }
+    }//Menu
+}//GUI
+
+
+            //ImGui::Separator();
+            //ImGui::Text("Tool Box Debug");
+            //ImGui::DragFloat("Square Position X", &squarePosition.x, 0.0001f, 0.0f, 1.0f, "%.4f");
+            //ImGui::DragFloat("Square Position Y", &squarePosition.y, 0.0001f, 0.0f, 1.0f, "%.4f");
+            //ImGui::DragFloat("Square Size X", &squareSize.x, 0.0001f, 0.0f, 1.0f, "%.4f");
+            //ImGui::DragFloat("Square Size Y", &squareSize.y, 0.0001f, 0.0f, 1.0f, "%.4f");
+            //ImGui::DragFloat("Square Growth", &squareGrowth, 0.0001f, 0.0f, 1.0f, "%.4f");
+            //ImGui::DragFloat("Square Offset X", &squareoffset.x, 0.0001f, 0.0f, 1.0f, "%.4f");
+            //ImGui::DragFloat("Square Offset Y", &squareoffset.y, 0.0001f, 0.0f, 3.0f, "%.4f");
+            //ImGui::DragFloat("Sprite Size X", &spriteSize.x, 0.0001f, 0.0f, 1.0f, "%.4f");
+            //ImGui::DragFloat("Sprite Size Y", &spriteSize.y, 0.0001f, 0.0f, 3.0f, "%.4f");
+            //ImGui::DragFloat("Info Rect Position X", &infoRectOffset.x, 0.0001f, 0.0f, 1.0f, "%.4f");
+            //ImGui::DragFloat("Info Rect Position Y", &infoRectOffset.y, 0.0001f, 0.0f, 3.0f, "%.4f");
+            //
+            //ImGui::DragFloat("Text Info Position X", &squareTextPosition.x, 0.0001f, 0.0f, 1.0f, "%.4f");
+            //ImGui::DragFloat("Text Info Position Y", &squareTextPosition.y, 0.0001f, 0.0f, 3.0f, "%.4f");
+            //ImGui::DragFloat("Text Offset Info Position X", &textOffsetInfo.x, 0.0001f, 0.0f, 1.0f, "%.4f");
+            //ImGui::DragFloat("Text Offset Inf Position Y", &textOffsetInfo.y, 0.0001f, 0.0f, 3.0f, "%.4f");
+            //ImGui::DragFloat("Spacing From Top Info", &ySpacingFromTopInfo, 0.0001f, 0.0f, 1.0f, "%.4f");
 
 // Was trying to create those lil boxes Rampage has in their trainer 
 /*

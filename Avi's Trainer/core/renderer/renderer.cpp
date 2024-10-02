@@ -1,9 +1,13 @@
 #include "pch.h"
 
+#include "GUI/menu/menu.h"
+
 #include <vendor/imgui/imgui.h>
 #include <vendor/imgui/imgui_impl_dx11.h>
 #include <vendor/imgui/imgui_impl_win32.h>
 #include <vendor/imgui/imgui_internal.h>
+
+bool g_ShowDebug = true;
 
 namespace core {
 	namespace renderer {
@@ -14,19 +18,16 @@ namespace core {
         bool imgui_initialized = false;
 
 
-        // Function for ImGui initialization
         void InitImGui(HWND hwnd, ID3D11Device* device, ID3D11DeviceContext* context)
         {
             if (imgui_initialized) return; // Only initialize once
 
-            // Setup Dear ImGui context
             IMGUI_CHECKVERSION();
             ImGui::CreateContext();
             ImGuiIO& io = ImGui::GetIO(); (void)io;
 
-            // Setup Dear ImGui style
             ImGui::StyleColorsDark();
-
+            io.IniFilename = "Avi\\Avi.ini";
             // Initialize ImGui for DirectX 11
             ImGui_ImplWin32_Init(hwnd);
             ImGui_ImplDX11_Init(device, context);
@@ -44,6 +45,13 @@ namespace core {
             ImGui::DestroyContext();
 
             imgui_initialized = false;
+        }
+
+        void UpdateMouseInputs()// Updates the Mouse clicks
+        {
+            ImGuiIO& io = ImGui::GetIO();
+            io.MouseDown[0] = GetAsyncKeyState(VK_LBUTTON) & 0x8000;
+            io.MouseDown[1] = GetAsyncKeyState(VK_RBUTTON) & 0x8000;
         }
 
         void OnPresent(IDXGISwapChain* swapChain)
@@ -64,19 +72,26 @@ namespace core {
                 }
             }
 
-            if (GUI::controls::cursorVisible) {
+            if (1) {
                 ImGui::GetIO().MouseDrawCursor = true;
                 ImGui::GetIO().ConfigFlags &= ~ImGuiConfigFlags_NoMouse;
+  
             }
             else {
                 ImGui::GetIO().MouseDrawCursor = false;
                 ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_NoMouse;
             }
-
+            UpdateMouseInputs();
             ImGui_ImplDX11_NewFrame();
             ImGui_ImplWin32_NewFrame();
             ImGui::NewFrame();
             ///////////////////
+            
+            if (g_ShowDebug)
+            {
+                Logger_c::DebugWindow::Render();//Log Window
+                GUI::menu::DebugMenu();//UI Debug
+            }
 
             ///////////////////
             ImGui::Render();

@@ -38,8 +38,6 @@ namespace view {
 
             }
 
-
-
             {//Player physics
                 buttons::Toggle("Seatbelt", &feature::local::Seatbelt::tickSeatbelt, "Fun to use on bikes | Works in SP in all vehicle");
                 buttons::Toggle("No Ragdoll", &feature::local::Ragdoll::tickNoRagdoll, "Most collision rules dont work on player");
