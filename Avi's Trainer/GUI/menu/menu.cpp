@@ -8,8 +8,8 @@ namespace GUI {
     namespace menu {
         namespace colours {
             Colour optionText = { 255, 255, 255, 255 };
-            Colour optionRect = { 0, 0, 0, 225 };
-            Colour scrollerColor = { 255, 223, 0, 175 };
+            Colour optionRect = { 0, 0, 0, 100 };
+            Colour scrollerColor = { 242, 185, 176, 255 };
             Colour scrollerColorHover = { 255, 255, 255, 50 };
             Colour hoverColor = { 100, 100, 100, 190 };
             Colour toggleOff = { 255, 0, 0, 255 };
@@ -18,7 +18,7 @@ namespace GUI {
             Colour headerRect = { 0, 0, 0, 255 };
         }
 
-        int maxOptions = 10;
+        int maxOptions = 14;
         int hoveredOption;
 
         Vector2 menuPosition = { 0.15f, 0.125f };
@@ -36,6 +36,7 @@ namespace GUI {
         float scrollerY = menuPosition.y + 0.125f;
         float scrollerSpeed = 0.10f;
         float textScale = 0.25f;
+        float textScaleBreak = 0.2f;
         float screenWidth = 1920.0f;
         float screenHeight = 1080.0f;
 
@@ -167,6 +168,51 @@ namespace GUI {
             return false;
         }
 
+
+        bool SetBreak(const char* leftText, const char* centerText, const char* rightText)
+        {
+            controls::optionCount++;
+            int startOption = (controls::currentOption - 1) / maxOptions * maxOptions + 1;
+            int endOption = startOption + maxOptions - 1;
+
+            if (controls::optionCount >= startOption && controls::optionCount <= endOption) {
+                float yPos = (optionSize.y * (controls::optionCount - startOption + 1) + optionOffset.y) + menuPosition.y;
+
+                static float smoothScrollYPosition = yPos;//Had to create two or it does some odd stuff
+                static float smoothScrollYPositionMouse = yPos;
+                float scrollSpeed = 0.10f;
+
+                Vector2 smoothTextPos = { menuPosition.x, smoothScrollYPosition };
+       
+                bool isCurrentOption = controls::currentOption == controls::optionCount;
+
+                if (leftText != NULL) {
+                    Vector2 leftTextPos = { (menuPosition.x - textOffset.x) + optionOffset.x, yPos - optionSize.y / 2.0f + textOffset.y };
+                    draw::Text(leftText, colours::optionText, leftTextPos, { textScaleBreak, textScaleBreak }, false, false);
+                }
+
+                if (centerText != NULL) {
+                    Vector2 centerTextPos = { menuPosition.x + optionOffset.x, yPos - optionSize.y / 2.0f + textOffset.y };
+                    draw::Text(centerText, colours::optionText, centerTextPos, { textScaleBreak, textScaleBreak }, true, false);
+                }
+
+                if (rightText != NULL) {
+                    Vector2 rightTextPos = { ((menuPosition.x + textOffset.x) + rightTextOffset.x) + optionOffset.x, yPos - optionSize.y / 2.0f + textOffset.y };
+                    draw::Text(rightText, colours::optionText, rightTextPos, { textScaleBreak, textScaleBreak }, false, true);
+                }
+
+                if (isCurrentOption) {
+                    smoothScrollYPosition += (yPos - smoothScrollYPosition) * scrollSpeed;
+                    if (controls::IsDownArrowPressed())
+                        controls::currentOption++;
+                    if (controls::IsUpArrowPressed())
+                        controls::currentOption--;
+                    return true;
+                }
+            }
+            return false;
+        }
+
         void SetSpriteOnOption(const std::string& textureDict, const std::string& textureName, Vector2 size, float rotation, Colour color)
         {
             int startOption = (controls::currentOption - 1) / maxOptions * maxOptions + 1;
@@ -239,13 +285,13 @@ namespace GUI {
         {
 
             DragMenuWithMouse();//You can drag the menu to any Pos on the screen
-            const char* titleText = "Avi";
+            const char* titleText = "Avi's Trainer";
 
             Vector2 titlePos = { menuPosition.x, menuPosition.y };
             draw::Rect_Center(colours::headerRect, titlePos, headerSize);
 
             Vector2 textPos = { (menuPosition.x + (headerSize.x - headerTextOffset.x)), (menuPosition.y + (headerSize.y - headerTextOffset.y)) };
-            draw::Text(titleText, colours::optionText, textPos, { 0.65f, 0.65f }, true, false);
+            draw::Text(titleText, colours::optionText, textPos, { 0.45f, 0.45f }, true, false);
 
             int startOption = (controls::currentOption - 1) / maxOptions * maxOptions + 1;
             int displayedOptions = controls::optionCount - startOption + 1;
@@ -279,7 +325,7 @@ namespace GUI {
 
             int totalPages = (controls::optionCount + maxOptions - 1) / maxOptions;
             char footerText[32];
-            snprintf(footerText, sizeof(footerText), "Page %d/%d | #%d", currentPage, totalPages, controls::currentOption);
+            snprintf(footerText, sizeof(footerText), " [%d/%d | %d/%d]", controls::currentOption, controls::optionCount, currentPage, totalPages);
             Vector2 leftTextPos = { menuPosition.x - footerTextOffset.x, endPos.y - optionSize.y / 2.0f + footerTextOffset.y };
             draw::Text(("v2.0 | " + subTitle).c_str(), colours::optionText, leftTextPos, { textScale, textScale }, false, false);
 

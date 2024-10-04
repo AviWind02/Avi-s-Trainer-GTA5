@@ -4,5 +4,9 @@ namespace view {
 		void View();
 	}
 
-
+	namespace weaponclub {
+		void WeaponClubListWeaponView();
+		void WeaponClubListClassView();
+		void WeaponClubListWeaponItemView();
+	}
 }

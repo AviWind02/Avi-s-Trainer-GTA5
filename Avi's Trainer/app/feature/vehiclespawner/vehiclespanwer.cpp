@@ -23,13 +23,15 @@ namespace feature {
         const int maxLength = 32;
         char userInput[maxLength] = { 0 };
 
-        void VehicleSpawnView() {//Left view here for now Move into View folder later
+        void VehicleSpawnView() {//Left this view here for now Move into View folder later
             GUI::menu::SetSubTitle("Vehicle Spawner Menu");
 
 
             GUI::buttons::Toggle("Delete Last vehicle", &deleteLastVehicleOnSpawn);
             GUI::buttons::Toggle("Wrap Player into Vehcice", &wrapPlayerInVehicleOnSpawn);
             GUI::buttons::Toggle("Spawn Air vehicles in the Air", &wrapPlayerVehicleInAirOnSpawn);
+            
+            GUI::buttons::Break(NULL, "Vehicle Classes");
 
             if (GUI::buttons::Sub("All Vehicles", pages::VehicleSpawner_Picked_page)) {
                 selectedClass = 23;

@@ -27,7 +27,9 @@ namespace feature {
             "Commercial Vehicles",
             "Trains",
             "Open-Wheel Race Cars",
+            "All-Vehicles"
 		};
+
         struct VehicleInfo
         {
             std::string vehicleDisplayName;
@@ -41,8 +43,9 @@ namespace feature {
             int vehicleClass;
             std::string vehicleHashName;
         };
+        
         extern bool loadVehiclInfo;
-        // Need to set loadVehiclInfo to try in order to re load them
+        // Need to set loadVehiclInfo to re load them
         void LoadVehicleWithInfo();
         extern std::vector<VehicleInfo> g_vehicleList;
 

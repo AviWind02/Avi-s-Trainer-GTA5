@@ -10,6 +10,11 @@ namespace GUI {
             return GUI::menu::SetOption(Opiton, NULL, NULL);
         }
 
+        bool OptionEX(const char* Opiton, const char* cOpiton, const char* rOpiton, std::string holder)
+        {
+            return GUI::menu::SetOption(Opiton, cOpiton, rOpiton);
+        }    
+        
         bool OptionInput(const char* option, char* userInput, int maxLength, bool* enterpressed)
         {
             controls::GetUserInput(option, userInput, maxLength, enterpressed);
@@ -26,6 +31,11 @@ namespace GUI {
                 return true;
             }
             return false;
+        }
+
+        bool Break(const char* Opiton, const char* cOpiton, const char* rOpiton)
+        {
+            return GUI::menu::SetBreak(Opiton, cOpiton, rOpiton);
         }
 
         bool Sub(const char* Opiton, pages::SubMenu menu, std::string holder)

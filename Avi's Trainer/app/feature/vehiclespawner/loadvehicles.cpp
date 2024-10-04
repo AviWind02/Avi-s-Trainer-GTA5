@@ -51,7 +51,7 @@ namespace feature {
         {
             if (loadVehiclInfo)
             {
-                std::string vehicleHashListPath = "Avi\\Vehicle\\vehiclehashlist.txt";;
+                std::string vehicleHashListPath = "Avi\\Data\\vehiclehashlist.txt";
                 std::ifstream infile(vehicleHashListPath);
 
                 if (!infile) {

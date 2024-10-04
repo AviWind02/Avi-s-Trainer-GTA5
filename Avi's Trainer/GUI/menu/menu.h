@@ -32,6 +32,7 @@ namespace GUI {
         extern int hoveredOption;
 
         bool SetOption(const char* leftText, const char* centerText, const char* rightText);
+        bool SetBreak(const char* leftText, const char* centerText, const char* rightText);
         void SetSpriteOnOption(const std::string& textureDict, const std::string& textureName, Vector2 size, float rotation, Colour color);
         //void SetTextOptionInfoBox(int count, const char* LText, int line);
         //void DrawSquareWithSprite(const std::string& textureDict, const std::string& textureName, float rotation, Colour color, int count);

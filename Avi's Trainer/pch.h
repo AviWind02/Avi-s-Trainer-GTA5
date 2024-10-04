@@ -36,17 +36,18 @@
 #include <d3d11.h>
 
 //ScriptHookV
-#include "Script Hook V/inc/enums.h"
-#include "Script Hook V/inc/natives.h"
-#include "Script Hook V/inc/types.h"
-#include "Script Hook V/inc/main.h"
-#include "Script Hook V/inc/nativeCaller.h"
+#include "vendor/Script Hook V/inc/enums.h"
+#include "vendor/Script Hook V/inc/natives.h"
+#include "vendor/Script Hook V/inc/types.h"
+#include "vendor/Script Hook V/inc/main.h"
+#include "vendor/Script Hook V/inc/nativeCaller.h"
 
-//ImGui
+//Renderer for ImGui
 #include "core/renderer/renderer.h"
 
 //Core
 #include "core/types/joaat.h"
+#include "core/types/colour.h"
 #include "core/logger/logger.h"
 #include "core/memory/patterns.h"
 #include "core/fs/filesystem.h"
@@ -61,6 +62,29 @@
 #include "app/global/player/player.h"
 #include "app/global/entity/entity.h"
 #include "app/global/vehicle/vehicle.h"
+#include "app/global/weapon/weapon.h"
 
 
 using namespace Logger_c;
+
+inline std::string RemovePrefix(const std::string& string, const std::string prefix) {
+
+    if (string.find(prefix) == 0) {
+        return string.substr(prefix.length());
+    }
+    return string;
+}
+
+inline std::string ToLowerCase(const std::string& input)
+{
+    std::string result = input;
+    std::transform(result.begin(), result.end(), result.begin(),
+        [](unsigned char c) { return std::tolower(c); });
+    return result;
+}
+
+inline bool FileExists(const std::string& filePath)
+{
+    std::ifstream file(filePath);
+    return file.good();
+}

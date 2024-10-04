@@ -1,8 +1,6 @@
 #pragma once
 
-struct Colour {
-    int r, g, b, a;
-};
+
 
 namespace GUI {
     namespace draw {
@@ -16,6 +14,11 @@ namespace GUI {
         void Rect(Colour color, Vector2 position, Vector2 size);
         void Rect_Center(Colour color, Vector2 position, Vector2 size);
         void Text(const char* text, Colour color, Vector2 position, Vector2 size, bool center, bool rightAlign);
+        
+        namespace DX
+        {
+            void ShowWeaponWindow();
+        }
 
     }
 }

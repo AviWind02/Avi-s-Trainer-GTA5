@@ -29,6 +29,11 @@
     <ClCompile Include="app\global\vehicle\vehicle.cpp" />
     <ClCompile Include="app\feature\vehiclespawner\loadvehicles.cpp" />
     <ClCompile Include="app\feature\vehiclespawner\vehiclespanwer.cpp" />
+    <ClCompile Include="app\feature\weapons\weaponclub\loadweapons.cpp" />
+    <ClCompile Include="app\view\weaponclub.cpp" />
+    <ClCompile Include="app\global\weapon\weapon.cpp" />
+    <ClCompile Include="core\renderer\imagesloader.cpp" />
+    <ClCompile Include="core\renderer\style.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -36,11 +41,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Script Hook V\inc\enums.h" />
-    <ClInclude Include="Script Hook V\inc\main.h" />
-    <ClInclude Include="Script Hook V\inc\nativeCaller.h" />
-    <ClInclude Include="Script Hook V\inc\natives.h" />
-    <ClInclude Include="Script Hook V\inc\types.h" />
+    <ClInclude Include="vendor\Script Hook V\inc\enums.h" />
+    <ClInclude Include="vendor\Script Hook V\inc\main.h" />
+    <ClInclude Include="vendor\Script Hook V\inc\nativeCaller.h" />
+    <ClInclude Include="vendor\Script Hook V\inc\natives.h" />
+    <ClInclude Include="vendor\Script Hook V\inc\types.h" />
     <ClInclude Include="core\types\vector.h" />
     <ClInclude Include="core\types\joaat.h" />
     <ClInclude Include="pch.h" />
@@ -69,8 +74,50 @@
     <ClInclude Include="core\fs\filesystem.h" />
     <ClInclude Include="app\global\vehicle\vehicle.h" />
     <ClInclude Include="app\feature\vehiclespawner\vehiclespawner.h" />
+    <ClInclude Include="app\feature\weapons\weaponclub\weaponclub.h" />
+    <ClInclude Include="vendor\rapidjson\allocators.h" />
+    <ClInclude Include="vendor\rapidjson\cursorstreamwrapper.h" />
+    <ClInclude Include="vendor\rapidjson\document.h" />
+    <ClInclude Include="vendor\rapidjson\encodedstream.h" />
+    <ClInclude Include="vendor\rapidjson\encodings.h" />
+    <ClInclude Include="vendor\rapidjson\filereadstream.h" />
+    <ClInclude Include="vendor\rapidjson\filewritestream.h" />
+    <ClInclude Include="vendor\rapidjson\fwd.h" />
+    <ClInclude Include="vendor\rapidjson\istreamwrapper.h" />
+    <ClInclude Include="vendor\rapidjson\memorybuffer.h" />
+    <ClInclude Include="vendor\rapidjson\memorystream.h" />
+    <ClInclude Include="vendor\rapidjson\ostreamwrapper.h" />
+    <ClInclude Include="vendor\rapidjson\pointer.h" />
+    <ClInclude Include="vendor\rapidjson\prettywriter.h" />
+    <ClInclude Include="vendor\rapidjson\rapidjson.h" />
+    <ClInclude Include="vendor\rapidjson\reader.h" />
+    <ClInclude Include="vendor\rapidjson\schema.h" />
+    <ClInclude Include="vendor\rapidjson\stream.h" />
+    <ClInclude Include="vendor\rapidjson\stringbuffer.h" />
+    <ClInclude Include="vendor\rapidjson\uri.h" />
+    <ClInclude Include="vendor\rapidjson\writer.h" />
+    <ClInclude Include="vendor\rapidjson\error\en.h" />
+    <ClInclude Include="vendor\rapidjson\error\error.h" />
+    <ClInclude Include="vendor\rapidjson\internal\biginteger.h" />
+    <ClInclude Include="vendor\rapidjson\internal\clzll.h" />
+    <ClInclude Include="vendor\rapidjson\internal\diyfp.h" />
+    <ClInclude Include="vendor\rapidjson\internal\dtoa.h" />
+    <ClInclude Include="vendor\rapidjson\internal\ieee754.h" />
+    <ClInclude Include="vendor\rapidjson\internal\itoa.h" />
+    <ClInclude Include="vendor\rapidjson\internal\meta.h" />
+    <ClInclude Include="vendor\rapidjson\internal\pow10.h" />
+    <ClInclude Include="vendor\rapidjson\internal\regex.h" />
+    <ClInclude Include="vendor\rapidjson\internal\stack.h" />
+    <ClInclude Include="vendor\rapidjson\internal\strfunc.h" />
+    <ClInclude Include="vendor\rapidjson\internal\strtod.h" />
+    <ClInclude Include="vendor\rapidjson\internal\swap.h" />
+    <ClInclude Include="vendor\rapidjson\msinttypes\inttypes.h" />
+    <ClInclude Include="vendor\rapidjson\msinttypes\stdint.h" />
+    <ClInclude Include="core\types\colour.h" />
+    <ClInclude Include="app\global\weapon\weapon.h" />
+    <ClInclude Include="core\renderer\fonts\rubik.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="Script Hook V\lib\ScriptHookV.lib" />
+    <Library Include="vendor\Script Hook V\lib\ScriptHookV.lib" />
   </ItemGroup>
 </Project>

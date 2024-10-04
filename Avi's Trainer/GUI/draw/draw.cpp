@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "draw.h"
+#include <vendor/imgui/imgui.h>
+#include <app/feature/weapons/weaponclub/weaponclub.h>
 
 #define M_PI 3.14159265358979323846f
 
@@ -72,6 +74,68 @@ namespace GUI {
                 Vector2 point2 = { center.x + radius * cosf(angle2), center.y + radius * sinf(angle2) };
 
                 GRAPHICS::DRAW_POLY(center.x, center.y, 0.0f, point1.x, point1.y, 0.0f, point2.x, point2.y, 0.0f, color.r, color.g, color.b, color.a);
+            }
+        }
+
+        namespace DX {
+
+            const ImVec2 windowSize(375.0f, 250.0f);
+
+            void RenderStatBar(const char* label, float value)
+            {
+                ImGui::Text("%s: %.2f", label, value);
+                ImGui::SameLine();
+
+                float fullBarWidth = 200.0f;
+                float fullWindowWidth = windowSize.x - 10.f;
+                float labelWidth = ImGui::CalcTextSize(label).x + 80.0f;
+                float barStartX = fullWindowWidth - fullBarWidth;
+
+
+                ImGui::SetCursorPosX(barStartX);
+
+                ImGui::ProgressBar(value / 100.0f, ImVec2(fullBarWidth, 10.0f), ""); 
+            }
+
+
+
+            void ShowWeaponWindow()
+            {
+                if (!feature::weapon::weaponclub::weaponsdataonoption::showDisplay) return;
+
+                ImGui::SetNextWindowSize(windowSize, ImGuiCond_Always);
+
+                ImGui::Begin("Weapon Stats", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDecoration);
+
+                ImGui::SetCursorPosX((ImGui::GetWindowSize().x - ImGui::CalcTextSize(feature::weapon::weaponclub::weaponsdataonoption::displayName.c_str()).x) * 0.5f);
+                ImGui::Text(feature::weapon::weaponclub::weaponsdataonoption::displayName.c_str());
+                ImGui::Separator();
+                for (auto image : core::renderer::image::weaponTextures)
+                {
+                    if (image.fileName == ToLowerCase(feature::weapon::weaponclub::weaponsdataonoption::hashstring))
+                    {
+                        if (image.Texture)
+                        {
+                            ImVec2 imageSize = ImVec2(164, 64);
+                            ImGui::SetCursorPosX((ImGui::GetWindowSize().x - imageSize.x) * 0.5f);
+                            ImGui::Image((void*)(intptr_t)image.Texture, imageSize);
+                        }
+                    } 
+                }
+
+                for (auto weapon : feature::weapon::weaponclub::g_weaponList)
+                {
+                    if (weapon.hashstring == feature::weapon::weaponclub::weaponsdataonoption::hashstring)
+                    {
+                        RenderStatBar("Damage", weapon.damage);
+                        RenderStatBar("Speed", weapon.speed);
+                        RenderStatBar("Capacity", weapon.capacity);
+                        RenderStatBar("Accuracy", weapon.accuracy);
+                        RenderStatBar("Range", weapon.hudrange);
+                    }
+                }
+
+                ImGui::End();
             }
         }
     }

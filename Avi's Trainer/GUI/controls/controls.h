@@ -6,6 +6,9 @@ namespace pages
         local_page,
         VehicleSpawner_page,
         VehicleSpawner_Picked_page,
+        WeaponClub_page,
+        WeaponClub_Picked_Group_page,
+        WeaponClub_Picked_Gun_page,
         setting_page,
     }; 
 }
