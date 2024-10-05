@@ -1,59 +1,64 @@
 #include "pch.h"
-#include "app/feature/local/localfeatures.h"
-
+#include "app/feature/local/localfeatures.hpp"
 using namespace GUI;
 
 namespace view {
 	namespace local {
+        using namespace app::feature::local;
 
+        PlayerHealth playerHealth;
+        WantedLevel wantedLevel;
+        PlayerMovement playerMovement;
+        PlayerMisc playermisc;
+        
 		void View()
-		{
+        {
             GUI::menu::SetSubTitle("Local Menu");
 
             {//Health Options
-                buttons::Toggle("Invincible", &feature::local::Health::tickInvincibility);
-                buttons::Toggle("Fast Health Regen", &feature::local::CleanPlayer::tickHealthRechargeRate, "Health Regen is 2.5x faster");
-                buttons::Toggle("Keep player clean", &feature::local::CleanPlayer::tickCleanPlayerLooped, "Player clean is looped");
-                buttons::Option("Clean player", &feature::local::CleanPlayer::tickCleanPlayer, "Cleans player. Removes dust, dirt, and blood");
-                buttons::Option("Refil health", &feature::local::Refill::tickRefillHealthBar);
-                buttons::Toggle("Loop Max Health", &feature::local::Refill::tickRefillHealthBarLooped);
-                buttons::Option("Refill Armour", &feature::local::Refill::tickRefillArmourBar);
-                buttons::Toggle("Loop Max Armour", &feature::local::Refill::tickRefillArmourBarLooped);
+
+                buttons::Toggle("Invincible", &playerHealth.tickInvincibility);
+                buttons::Toggle("Fast Health Regen", &playerHealth.tickHealthRechargeRate, "Health Regen is 2.5x faster");
+                buttons::Toggle("Keep player clean", &playerHealth.tickCleanPlayer, "Player clean is looped");
+                buttons::Option("Clean player", []() { playerHealth.ClearPlayerDamage(); });
+                buttons::Option("Refil health", []() { playerHealth.RefillHealth(); });
+                buttons::Toggle("Loop Max Health", &playerHealth.tickrefillhealth);
+                buttons::Option("Refill Armour", []() { playerHealth.RefillArmor(); });
+                buttons::Toggle("Loop Max Armour", &playerHealth.tickrefillarmor);
+
             }
 
-            {//Wanted Level Stuff
-                buttons::Option("Clear Wanted Level", &feature::local::WantedLevel::clearWantedLevel);
-                buttons::Toggle("Hold Level", &feature::local::WantedLevel::holdWantedLevel, "Holds current wanted level and disable wanted level slider");
-                buttons::Toggle("Never Wanted", &feature::local::WantedLevel::neverWantedLevel);
-                buttons::Toggle("Always Wanted", &feature::local::WantedLevel::alwaysWantedLevel, "Sets wanted level to 5 and loops");
-                if (buttons::Int("Wanted Level", &feature::local::WantedLevel::wantedLevelIndex, 0, 5, 1))
-                    feature::local::WantedLevel::editWantedLevel = true;
-            }
+            {
+                buttons::Option("Clear Wanted Level", []() { wantedLevel.ClearWantedLevel(); });
+                buttons::Toggle("Hold Level", &wantedLevel.holdWantedLevel);
+                buttons::Toggle("Never Wanted", &wantedLevel.neverWantedLevel);
+                buttons::Toggle("Always Wanted", &wantedLevel.alwaysWantedLevel);
+                buttons::Int("Wanted Level", &wantedLevel.wantedLevelIndex, 0, 5, 1, []() {wantedLevel.SetWantedLevel(wantedLevel.wantedLevelIndex); });
+            }      
 
             {//Player Movement options
 
-                buttons::Toggle("No Clip", &feature::local::Noclip::tickNoclip, "Navigate through the environment with collisions disabled. Controls(W: forward, S backwards, Mouse : camera, Left shfit boost, CTRL to pause at current coords)");
-                buttons::Option("Max Stamina", &feature::local::Movement::tickSetMaxStamina, "Enable Max Player Stamina(Loop)");
-                //buttons::Float("Fast Run", &feature::local::Movement::runningIndex, 1, 10, 0.5f);
-                //buttons::Float("Fast Swim", &feature::local::Movement::swimmingIndex, 1, 10, 0.5f);
-                buttons::Toggle("Loop Max Stamina", &feature::local::Movement::tickMaxStamina, "Enable Max Player Stamina(Loop)");
-                buttons::Toggle("Super Jump", &feature::local::Movement::tickSuperJump, "Allows you to jump super high");
+                buttons::Toggle("No Clip", &playerMovement.tickNoclip, "Navigate through the environment with collisions disabled. Controls(W: forward, S backwards, Mouse : camera, Left shfit boost, CTRL to pause at current coords)");
+                buttons::Option("Max Stamina", []() { playerMovement.ResetStamina(); });
+                buttons::Float("Fast Run", &playerMovement.runningIndex, 0.f, 1.5f, 0.1f);
+                buttons::Float("Fast Swim", &playerMovement.swimmingIndex, 0.f, 1.5f, 0.1f);
+                buttons::Toggle("Loop Max Stamina", &playerMovement.tickMaxStamina, "Enable Max Player Stamina(Loop)");
+                buttons::Toggle("Super Jump", &playerMovement.tickSuperJump, "Allows you to jump super high");
 
             }
 
             {//Player physics
-                buttons::Toggle("Seatbelt", &feature::local::Seatbelt::tickSeatbelt, "Fun to use on bikes | Works in SP in all vehicle");
-                buttons::Toggle("No Ragdoll", &feature::local::Ragdoll::tickNoRagdoll, "Most collision rules dont work on player");
-                buttons::Toggle("Invisible", &feature::local::Invisible::tickInvisible);
-                buttons::Toggle("Invisible Network", &feature::local::Invisible::tickInvisibleNetwork);
-                buttons::Int("Alpha Value", &feature::local::Invisible::alphaValue, 1, 255, 25);
-
+                buttons::Toggle("Seatbelt", &playermisc.tickSeatbelt, "Fun to use on bikes | Works in SP in all vehicle");
+                buttons::Toggle("No Ragdoll", &playermisc.tickNoRagdoll, "Most collision rules dont work on player");
+                buttons::Toggle("Invisible", &playermisc.tickInvisible);
+                buttons::Toggle("Invisible Network", &playermisc.tickInvisibleNetwork);
+                buttons::Int("Alpha Value", &playermisc.alphaValue, 1, 255, 25);
             }
 
-            {//Misc
-                buttons::Toggle("Igonre Player", &feature::local::IgnorePlayer::tickIgnorePlayer, "Most Peds will Igonre you, try going into the army base.");
-                buttons::Option("Kill Yourself", &feature::local::Health::tickkillPlayer, "The gods have offered you a choice: rise above or fall below, but know that every action has a consequence.");
-                buttons::Toggle("Keep Killing Yourself", &feature::local::Health::tickkillPlayerLooped, "Why Not?");
+            {//Health Options 2 plus Igonre
+                buttons::Toggle("Igonre Player", &playermisc.tickIgnorePlayer, "Most Peds will Igonre you, try going into the army base.");
+                buttons::Option("Kill Yourself", []() { playerHealth.SetPlayerHealth(0); });
+                buttons::Toggle("Keep Killing Yourself", &playerHealth.tickKillPlayer, "Why Not?");
             }
 		}
 

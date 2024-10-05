@@ -1,6 +1,6 @@
 #include "pch.h"
 
-namespace feature {
+namespace g_feature {
 	namespace g_vehicle {
 
 		Vehicle Spawn(const char* vehicleHash, Vector3 pos, float dir) {

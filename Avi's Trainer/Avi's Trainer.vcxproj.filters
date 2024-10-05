@@ -28,12 +28,16 @@
     <ClCompile Include="core\fs\filesystem.cpp" />
     <ClCompile Include="app\global\vehicle\vehicle.cpp" />
     <ClCompile Include="app\feature\vehiclespawner\loadvehicles.cpp" />
-    <ClCompile Include="app\feature\vehiclespawner\vehiclespanwer.cpp" />
     <ClCompile Include="app\feature\weapons\weaponclub\loadweapons.cpp" />
     <ClCompile Include="app\view\weaponclub.cpp" />
     <ClCompile Include="app\global\weapon\weapon.cpp" />
     <ClCompile Include="core\renderer\imagesloader.cpp" />
     <ClCompile Include="core\renderer\style.cpp" />
+    <ClCompile Include="app\feature\local\wantedlevel.cpp" />
+    <ClCompile Include="app\feature\local\playerhealth.cpp" />
+    <ClCompile Include="app\feature\local\playermovement.cpp" />
+    <ClCompile Include="app\view\vehiclespawner.cpp" />
+    <ClCompile Include="app\feature\local\playermisc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -56,7 +60,6 @@
     <ClInclude Include="app\global\player\player.h" />
     <ClInclude Include="app\global\entity\entity.h" />
     <ClInclude Include="app\global\math\math.h" />
-    <ClInclude Include="app\feature\local\localfeatures.h" />
     <ClInclude Include="app\view\view.h" />
     <ClInclude Include="vendor\imgui\imconfig.h" />
     <ClInclude Include="vendor\imgui\imgui.h" />
@@ -116,6 +119,7 @@
     <ClInclude Include="core\types\colour.h" />
     <ClInclude Include="app\global\weapon\weapon.h" />
     <ClInclude Include="core\renderer\fonts\rubik.hpp" />
+    <ClInclude Include="app\feature\local\localfeatures.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="vendor\Script Hook V\lib\ScriptHookV.lib" />

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "app/feature/weapons/weaponclub/weaponclub.h"
 
-namespace feature {
+namespace g_feature {
     namespace g_weapon {
 
         using namespace app;

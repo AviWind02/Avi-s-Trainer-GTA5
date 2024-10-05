@@ -3,7 +3,7 @@
 
 using namespace app::math;
 
-namespace feature {
+namespace g_feature {
     namespace g_entity {
 
         Vector3 GetGameplayCamRot() {

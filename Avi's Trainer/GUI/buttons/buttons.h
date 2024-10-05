@@ -12,6 +12,13 @@ namespace GUI {
         bool Toggle(const char* option, bool* value, std::string holder = "");
         bool Float(const char* option, float* value, float min, float max, float step = 1.f, std::string holder = "");
         bool StringArray(const char* option, int& currentIndex, const std::vector<std::string>& options, std::string holder ="");
+
+        //Trying lambda never done it tho
+        bool Option(const char* option, const std::function<void()>& action);
+        bool Toggle(const char* option, bool* value, const std::function<void()>& action);
+        bool Int(const char* option, int* value, int min, int max, int step, const std::function<void()>& action);
+        bool Float(const char* option, float* value, float min, float max, float step, const std::function<void()>& action);
+
     }
 }
 //since this file is in PCH just gonna toss this here.

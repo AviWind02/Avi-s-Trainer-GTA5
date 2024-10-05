@@ -1,5 +1,5 @@
 #pragma once
-namespace feature {
+namespace g_feature {
 	namespace g_weapon {
 
         bool IsPlayerAiming(Ped ped);

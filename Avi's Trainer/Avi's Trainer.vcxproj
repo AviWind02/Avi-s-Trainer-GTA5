@@ -7,9 +7,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="app\feature\local\playerhealth.cpp" />
     <ClCompile Include="app\feature\local\localfeatures.cpp" />
+    <ClCompile Include="app\feature\local\playermisc.cpp" />
+    <ClCompile Include="app\feature\local\playermovement.cpp" />
+    <ClCompile Include="app\feature\local\wantedlevel.cpp" />
     <ClCompile Include="app\feature\vehiclespawner\loadvehicles.cpp" />
-    <ClCompile Include="app\feature\vehiclespawner\vehiclespanwer.cpp" />
     <ClCompile Include="app\feature\weapons\weaponclub\loadweapons.cpp" />
     <ClCompile Include="app\global\entity\entity.cpp" />
     <ClCompile Include="app\global\math\math.cpp" />
@@ -17,6 +20,7 @@
     <ClCompile Include="app\global\vehicle\vehicle.cpp" />
     <ClCompile Include="app\global\weapon\weapon.cpp" />
     <ClCompile Include="app\view\localview.cpp" />
+    <ClCompile Include="app\view\vehiclespawner.cpp" />
     <ClCompile Include="app\view\weaponclub.cpp" />
     <ClCompile Include="core\fs\filesystem.cpp" />
     <ClCompile Include="core\logger\logger.cpp" />
@@ -58,7 +62,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="app\feature\local\localfeatures.h" />
+    <ClInclude Include="app\feature\local\localfeatures.hpp" />
     <ClInclude Include="app\feature\vehiclespawner\vehiclespawner.h" />
     <ClInclude Include="app\feature\weapons\weaponclub\weaponclub.h" />
     <ClInclude Include="app\global\entity\entity.h" />

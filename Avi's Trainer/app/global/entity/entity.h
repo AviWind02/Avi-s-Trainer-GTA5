@@ -1,5 +1,5 @@
 #pragma once
-namespace feature {
+namespace g_feature {
     namespace g_entity {
 
         void ApplyForce(Entity entityHandle, Vector3 direction, Vector3 offset, int forceType);
