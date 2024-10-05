@@ -48,8 +48,5 @@ namespace feature {
         // Need to set loadVehiclInfo to re load them
         void LoadVehicleWithInfo();
         extern std::vector<VehicleInfo> g_vehicleList;
-
-        void PickedVehicleView();
-        void VehicleSpawnView();
 	}
 }

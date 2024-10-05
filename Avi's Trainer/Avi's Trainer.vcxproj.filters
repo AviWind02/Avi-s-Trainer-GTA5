@@ -27,7 +27,7 @@
     <ClCompile Include="core\pool\pool.cpp" />
     <ClCompile Include="core\fs\filesystem.cpp" />
     <ClCompile Include="app\global\vehicle\vehicle.cpp" />
-    <ClCompile Include="app\feature\vehiclespawner\loadvehicles.cpp" />
+    <ClCompile Include="app\feature\vehicle\vehiclespawner\loadvehicles.cpp" />
     <ClCompile Include="app\feature\weapons\weaponclub\loadweapons.cpp" />
     <ClCompile Include="app\view\weaponclub.cpp" />
     <ClCompile Include="app\global\weapon\weapon.cpp" />
@@ -76,7 +76,7 @@
     <ClInclude Include="core\pool\pool.h" />
     <ClInclude Include="core\fs\filesystem.h" />
     <ClInclude Include="app\global\vehicle\vehicle.h" />
-    <ClInclude Include="app\feature\vehiclespawner\vehiclespawner.h" />
+    <ClInclude Include="app\feature\vehicle\vehiclespawner\vehiclespawner.h" />
     <ClInclude Include="app\feature\weapons\weaponclub\weaponclub.h" />
     <ClInclude Include="vendor\rapidjson\allocators.h" />
     <ClInclude Include="vendor\rapidjson\cursorstreamwrapper.h" />

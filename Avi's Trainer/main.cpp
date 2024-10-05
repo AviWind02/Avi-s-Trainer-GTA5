@@ -3,7 +3,7 @@
 #include <GUI/menu/menu.h>
 
 #include "app/feature/local/localfeatures.hpp"
-#include "app/feature/vehiclespawner/vehiclespawner.h"
+#include "app/feature/vehicle/vehiclespawner/vehiclespawner.h"
 #include "app/feature/weapons/weaponclub/weaponclub.h"
 
 

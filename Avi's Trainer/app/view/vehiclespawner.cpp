@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "app/feature/vehiclespawner/vehiclespawner.h"
+#include "app/feature/vehicle/vehiclespawner/vehiclespawner.h"
 namespace view {
     namespace vehiclespawner {
         using namespace g_feature;

@@ -12,7 +12,7 @@
     <ClCompile Include="app\feature\local\playermisc.cpp" />
     <ClCompile Include="app\feature\local\playermovement.cpp" />
     <ClCompile Include="app\feature\local\wantedlevel.cpp" />
-    <ClCompile Include="app\feature\vehiclespawner\loadvehicles.cpp" />
+    <ClCompile Include="app\feature\vehicle\vehiclespawner\loadvehicles.cpp" />
     <ClCompile Include="app\feature\weapons\weaponclub\loadweapons.cpp" />
     <ClCompile Include="app\global\entity\entity.cpp" />
     <ClCompile Include="app\global\math\math.cpp" />
@@ -63,7 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="app\feature\local\localfeatures.hpp" />
-    <ClInclude Include="app\feature\vehiclespawner\vehiclespawner.h" />
+    <ClInclude Include="app\feature\vehicle\vehiclespawner\vehiclespawner.h" />
     <ClInclude Include="app\feature\weapons\weaponclub\weaponclub.h" />
     <ClInclude Include="app\global\entity\entity.h" />
     <ClInclude Include="app\global\math\math.h" />

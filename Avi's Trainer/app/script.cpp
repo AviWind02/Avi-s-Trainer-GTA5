@@ -4,8 +4,6 @@
 
 
 #include "app/view/view.h"
-#include "app/feature/local/localfeatures.h"
-#include "app/feature/vehiclespawner/vehiclespawner.h"
 
 #include "core/pool/pool.h"
 #include "core/memory/nativememory.h"
@@ -33,8 +31,8 @@ void MenuUI()
 
 			case pages::local_page:view::local::View(); break;
 			
-			case pages::VehicleSpawner_page:feature::vehiclespawner::VehicleSpawnView(); break;
-			case pages::VehicleSpawner_Picked_page:feature::vehiclespawner::PickedVehicleView(); break;
+			case pages::VehicleSpawner_page:view::vehiclespawner::VehicleSpawnView(); break;
+			case pages::VehicleSpawner_Picked_page:view::vehiclespawner::PickedVehicleView(); break;
 			
 			case pages::WeaponClub_page:view::weaponclub::WeaponClubListClassView(); break;
 			case pages::WeaponClub_Picked_Group_page:view::weaponclub::WeaponClubListWeaponView(); break;

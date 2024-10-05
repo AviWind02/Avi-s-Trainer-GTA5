@@ -9,4 +9,9 @@ namespace view {
 		void WeaponClubListClassView();
 		void WeaponClubListWeaponItemView();
 	}
+
+	namespace vehiclespawner {
+		void PickedVehicleView();
+		void VehicleSpawnView();
+	}
 }

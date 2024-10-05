@@ -33,7 +33,7 @@ namespace view {
                 buttons::Toggle("Hold Level", &wantedLevel.holdWantedLevel);
                 buttons::Toggle("Never Wanted", &wantedLevel.neverWantedLevel);
                 buttons::Toggle("Always Wanted", &wantedLevel.alwaysWantedLevel);
-                buttons::Int("Wanted Level", &wantedLevel.wantedLevelIndex, 0, 5, 1, []() {wantedLevel.SetWantedLevel(wantedLevel.wantedLevelIndex); });
+                buttons::Int("Wanted Level", &wantedLevel.wantedLevelIndex, 0, 5, 1, []() { wantedLevel.SetWantedLevel(wantedLevel.wantedLevelIndex); });
             }      
 
             {//Player Movement options
@@ -55,7 +55,7 @@ namespace view {
                 buttons::Int("Alpha Value", &playermisc.alphaValue, 1, 255, 25);
             }
 
-            {//Health Options 2 plus Igonre
+            {//Health Options #2 plus Igonre Player
                 buttons::Toggle("Igonre Player", &playermisc.tickIgnorePlayer, "Most Peds will Igonre you, try going into the army base.");
                 buttons::Option("Kill Yourself", []() { playerHealth.SetPlayerHealth(0); });
                 buttons::Toggle("Keep Killing Yourself", &playerHealth.tickKillPlayer, "Why Not?");
