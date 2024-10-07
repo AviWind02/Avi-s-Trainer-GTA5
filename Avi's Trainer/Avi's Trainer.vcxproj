@@ -20,6 +20,7 @@
     <ClCompile Include="app\global\vehicle\vehicle.cpp" />
     <ClCompile Include="app\global\weapon\weapon.cpp" />
     <ClCompile Include="app\view\localview.cpp" />
+    <ClCompile Include="app\view\vehicleshop.cpp" />
     <ClCompile Include="app\view\vehiclespawner.cpp" />
     <ClCompile Include="app\view\weaponclub.cpp" />
     <ClCompile Include="core\fs\filesystem.cpp" />
@@ -63,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="app\feature\local\localfeatures.hpp" />
+    <ClInclude Include="app\feature\vehicle\vehicleshop\vehicleshop.h" />
     <ClInclude Include="app\feature\vehicle\vehiclespawner\vehiclespawner.h" />
     <ClInclude Include="app\feature\weapons\weaponclub\weaponclub.h" />
     <ClInclude Include="app\global\entity\entity.h" />

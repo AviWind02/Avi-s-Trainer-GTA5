@@ -1,8 +1,8 @@
 #pragma once
 
 namespace feature {
-	namespace vehiclespawner
-	{
+	namespace vehiclespawner {
+
 		inline const std::vector<std::string> g_vehicleCategories = {
             "Compact Cars",
             "Sedan Cars",

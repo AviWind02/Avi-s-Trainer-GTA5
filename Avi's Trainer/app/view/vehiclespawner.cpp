@@ -24,7 +24,7 @@ namespace view {
         const int maxLength = 32;
         char userInput[maxLength] = { 0 };
 
-        void VehicleSpawnView() {//Left this view here for now Move into View folder later
+        void VehicleSpawnView() {
             GUI::menu::SetSubTitle("Vehicle Spawner Menu");
 
 

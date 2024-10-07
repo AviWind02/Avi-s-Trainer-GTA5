@@ -8,6 +8,8 @@
 #include "core/pool/pool.h"
 #include "core/memory/nativememory.h"
 
+int i;
+
 void MenuUI()
 {
 	srand(GetTickCount64());
@@ -23,7 +25,7 @@ void MenuUI()
 				GUI::buttons::Sub("Local", pages::local_page);
 				GUI::buttons::Sub("Vehicle Spawner", pages::VehicleSpawner_page);
 				GUI::buttons::Sub("Ammu-Nation store", pages::WeaponClub_page);
-
+		
 				
 				GUI::buttons::Sub("Setting", pages::setting_page);
 			}break;
