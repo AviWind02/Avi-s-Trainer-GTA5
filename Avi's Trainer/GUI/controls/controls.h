@@ -9,6 +9,8 @@ namespace pages
         WeaponClub_page,
         WeaponClub_Picked_Group_page,
         WeaponClub_Picked_Gun_page,
+        VehicleShop_page,
+        VehicleShop_PickedMod_page,
         setting_page,
     }; 
 }

@@ -175,6 +175,19 @@ namespace GUI {
             return clicked;
         }
 
+        bool Sub(const char* Opiton, pages::SubMenu menu, const std::function<void()>& action)
+        {
+            bool clicked = Option(Opiton);
+            GUI::menu::SetSpriteOnOption("commonmenu", "arrowright", { 0.015f, 0.025f }, 1.f, { 255, 255, 255, 255 });
+            if (clicked) {
+                controls::NextSubmenu(menu);
+                if (action) {
+                    action();
+                }
+            }
+            return clicked;
+        }
+
         bool Int(const char* option, int* value, int min, int max, int step, const std::function<void()>& action) {
             bool clicked = false;
             char valueTextBuffer[128];

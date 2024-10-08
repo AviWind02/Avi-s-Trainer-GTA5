@@ -31,9 +31,7 @@ namespace view {
             }
 
             for (size_t i = 0; i < feature::weapon::weaponclub::WeaponGroups->size(); ++i) {
-                if (buttons::Sub(feature::weapon::weaponclub::WeaponGroups[i].c_str(), pages::WeaponClub_Picked_Group_page)) {
-                    selectedWeaponClass = static_cast<int>(i);
-                }
+                if (buttons::Sub(feature::weapon::weaponclub::WeaponGroups[i].c_str(), pages::WeaponClub_Picked_Group_page, [i]() {selectedWeaponClass = i; }));
             }
         }
 
@@ -42,9 +40,7 @@ namespace view {
 
             for (const auto& weapon : feature::weapon::weaponclub::g_weaponList) {
                 if (weapon.classIndex == selectedWeaponClass || selectedWeaponClass == 22) {
-                    if (buttons::Sub((weapon.displayName == "NULL" ? weapon.hashstring : weapon.displayName).c_str(), pages::WeaponClub_Picked_Gun_page)) {
-                        SelectWeapon(weapon); 
-                    }
+                    if (buttons::Sub((weapon.displayName == "NULL" ? weapon.hashstring : weapon.displayName).c_str(), pages::WeaponClub_Picked_Gun_page, [weapon]() {SelectWeapon(weapon); }));
 
                     if (GUI::controls::currentOption == GUI::controls::optionCount) {
                         DisplayWeaponDetails(weapon);

@@ -14,4 +14,10 @@ namespace view {
 		void PickedVehicleView();
 		void VehicleSpawnView();
 	}
+
+	namespace vehicleshop {
+		void VehicleModifications();
+		void VehicleSelctedModifications();
+
+	}
 }

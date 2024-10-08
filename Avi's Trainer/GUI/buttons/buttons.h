@@ -15,6 +15,7 @@ namespace GUI {
 
         //Trying lambda never done it tho
         bool Option(const char* option, const std::function<void()>& action);
+        bool Sub(const char* Opiton, pages::SubMenu menu, const std::function<void()>& action);
         bool Toggle(const char* option, bool* value, const std::function<void()>& action);
         bool Int(const char* option, int* value, int min, int max, int step, const std::function<void()>& action);
         bool Float(const char* option, float* value, float min, float max, float step, const std::function<void()>& action);

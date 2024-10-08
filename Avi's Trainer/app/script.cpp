@@ -24,6 +24,7 @@ void MenuUI()
 				GUI::menu::SetSubTitle("Main Menu");
 				GUI::buttons::Sub("Local", pages::local_page);
 				GUI::buttons::Sub("Vehicle Spawner", pages::VehicleSpawner_page);
+				GUI::buttons::Sub("Vehicle Shop", pages::VehicleShop_page);
 				GUI::buttons::Sub("Ammu-Nation store", pages::WeaponClub_page);
 		
 				
@@ -36,6 +37,9 @@ void MenuUI()
 			case pages::VehicleSpawner_page:view::vehiclespawner::VehicleSpawnView(); break;
 			case pages::VehicleSpawner_Picked_page:view::vehiclespawner::PickedVehicleView(); break;
 			
+			case pages::VehicleShop_page: view::vehicleshop::VehicleModifications(); break;
+			case pages::VehicleShop_PickedMod_page: view::vehicleshop::VehicleSelctedModifications(); break;
+
 			case pages::WeaponClub_page:view::weaponclub::WeaponClubListClassView(); break;
 			case pages::WeaponClub_Picked_Group_page:view::weaponclub::WeaponClubListWeaponView(); break;
 			case pages::WeaponClub_Picked_Gun_page:view::weaponclub::WeaponClubListWeaponItemView(); break;

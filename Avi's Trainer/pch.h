@@ -88,3 +88,12 @@ inline bool FileExists(const std::string& filePath)
     std::ifstream file(filePath);
     return file.good();
 }
+
+inline bool IsAllCaps(const std::string& str) {
+    for (char c : str) {
+        if (std::isalpha(c) && !std::isupper(c)) {
+            return false;
+        }
+    }
+   return true;
+}
