@@ -42,19 +42,7 @@ namespace feature {
         extern std::vector<weaponSpawnList> g_weaponList;
         extern std::vector<weaponSpawnList_comp> g_weaponListComp;
 
-        inline const std::string WeaponGroups[10] =
-        {
-            "Melee Weapons",
-            "Pistols",
-            "Rifles",
-            "Machine Guns",
-            "Shotguns",
-            "Sniper Rifles",
-            "Heavy Weapons",
-            "Thrown Weapons",
-            "Submachine Guns",
-            "Other Weapons"
-        };
+  
 
         inline const std::string WeaponGroupsHash[9] =
         {
@@ -68,6 +56,8 @@ namespace feature {
             "GROUP_THROWN",
             "GROUP_SMG"
         };
+
+ 
 
         inline const std::string WeaponTintNames[8] =
         {

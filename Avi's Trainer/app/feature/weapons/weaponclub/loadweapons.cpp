@@ -20,7 +20,7 @@ namespace feature {
         {
             if (loadWeaponWithInfo)
             {
-                FILE* fp = fopen("Avi\\Data\\weapons.json", "r");  // Open the JSON file
+                FILE* fp = fopen("Avi\\Data\\weapons.json", "r");
                 char readBuffer[65536];
                 rapidjson::FileReadStream is(fp, readBuffer, sizeof(readBuffer));
 
@@ -35,7 +35,6 @@ namespace feature {
 
                 const auto& weaponsCache = doc["weapons_cache"];
 
-                // Process weapon_map and store weapon names (_GET_LABEL_TEXT)
                 if (weaponsCache.HasMember("weapon_map")) {
                     const auto& weaponMap = weaponsCache["weapon_map"];
                     for (auto it = weaponMap.MemberBegin(); it != weaponMap.MemberEnd(); ++it) {
@@ -43,7 +42,6 @@ namespace feature {
                         std::string weaponName = it->name.GetString();
                         std::string displayName = weapon["m_display_name"].GetString();
 
-                        // Create weapon data and populate it
                         weaponSpawnList weaponData;
                         WeaponHudStatsData data;
 
@@ -58,7 +56,6 @@ namespace feature {
                             weaponData.hudrange = data.hudRange;
                         }
                         
-                        weaponData.className = WeaponGroups[9];// Other
                         weaponData.classIndex = 9;// Other
 
                         Hash Group = WEAPON::GET_WEAPONTYPE_GROUP(rage::joaat(weaponName));
@@ -66,15 +63,12 @@ namespace feature {
                         {
                             if (rage::joaat(WeaponGroupsHash[i]) == Group)
                             {
-                                weaponData.className = WeaponGroups[i];// If found set
                                 weaponData.classIndex = i;
                             }
                         }
 
-                        // Log the weapon being loaded
                         LOG << "Loaded weapon: " << weaponData.hashstring << " | (" << weaponData.displayName << ")" << " | Group " << weaponData.classIndex;
 
-                        // If weapon has attachments, store them and log them
                         if (weapon.HasMember("m_attachments")) {
                             const auto& attachments = weapon["m_attachments"];
                             if (attachments.Size() > 0) {
@@ -89,12 +83,10 @@ namespace feature {
                             }
                         }
 
-                        // Add weapon data to the list
                         g_weaponList.push_back(weaponData);
                     }
                 }
 
-                // Process weapon_components and store component descriptions, names, and display names
                 if (weaponsCache.HasMember("weapon_components")) {
                     const auto& components = weaponsCache["weapon_components"];
                     for (auto it = components.MemberBegin(); it != components.MemberEnd(); ++it) {
@@ -104,7 +96,6 @@ namespace feature {
                         std::string displayName = component["m_display_name"].GetString();
                         std::string name = component["m_name"].GetString();
 
-                        // Add the component to g_weaponListComp
                         weaponSpawnList_comp componentData;
                         componentData.hashstring = componentName;
                         componentData.displayDesc = HUD::_GET_LABEL_TEXT(displayDesc.c_str());

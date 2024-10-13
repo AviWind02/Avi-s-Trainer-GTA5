@@ -1,7 +1,10 @@
 #include "pch.h"
 #include "draw.h"
+
 #include <vendor/imgui/imgui.h>
-#include <app/feature/weapons/weaponclub/weaponclub.h>
+
+#include "app/feature/weapons/weaponclub/weaponclub.h"
+#include "app/feature/vehicle/vehicleshop/vehicleshop.h"
 
 #define M_PI 3.14159265358979323846f
 
@@ -77,17 +80,17 @@ namespace GUI {
             }
         }
 
-        namespace DX {
+        namespace DX {//Move these later or make them in native tbh
 
-            const ImVec2 windowSize(375.0f, 250.0f);
+            const float windowSizeX = 375.0f;
 
             void RenderStatBar(const char* label, float value)
             {
                 ImGui::Text("%s: %.2f", label, value);
                 ImGui::SameLine();
-
+                
                 float fullBarWidth = 200.0f;
-                float fullWindowWidth = windowSize.x - 10.f;
+                float fullWindowWidth = windowSizeX - 10.f;
                 float labelWidth = ImGui::CalcTextSize(label).x + 80.0f;
                 float barStartX = fullWindowWidth - fullBarWidth;
 
@@ -101,7 +104,9 @@ namespace GUI {
 
             void ShowWeaponWindow()
             {
-                if (!feature::weapon::weaponclub::weaponsdataonoption::showDisplay) return;
+                const ImVec2 windowSize(windowSizeX, 250.0f);
+
+                if (!feature::weapon::weaponclub::weaponsdataonoption::showDisplay) return;//Switch to Case
 
                 ImGui::SetNextWindowSize(windowSize, ImGuiCond_Always);
 
@@ -136,6 +141,34 @@ namespace GUI {
                 }
 
                 ImGui::End();
+            }
+
+            void ShowVehicleShopwWindow()
+            {
+                const ImVec2 windowSize(windowSizeX, 150.0f);
+
+                if (controls::currentSubMenu == pages::VehicleShop_PickedMod_page || controls::currentSubMenu == pages::VehicleShop_page)
+                {
+                    ImGui::SetNextWindowSize(windowSize, ImGuiCond_Always);
+
+                    ImGui::Begin("Vehicle Specifications", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDecoration);
+
+                    ImGui::SetCursorPosX((ImGui::GetWindowSize().x - ImGui::CalcTextSize("Vehicle Specifications").x) * 0.5f);
+                    ImGui::Text("Vehicle Specifications");
+
+                    if (feature::vehicleshop::Spec.has_value())
+                    {
+                        auto& spec = feature::vehicleshop::Spec.value();
+
+                        ImGui::Text("Top Speed KPH %.1f", spec.maxSpeed * 3.6);
+                        RenderStatBar("Max Speed m/s", spec.maxSpeed);
+                        RenderStatBar("Max Braking", spec.maxBraking * 50);
+                        RenderStatBar("Max Acceleration", spec.maxAcceleration * 50);
+                        RenderStatBar("Max Traction", spec.maxTraction * 25);
+                    }
+
+                    ImGui::End();
+                }
             }
         }
     }

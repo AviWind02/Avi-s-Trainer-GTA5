@@ -38,7 +38,7 @@ void MenuUI()
 			case pages::VehicleSpawner_Picked_page:view::vehiclespawner::PickedVehicleView(); break;
 			
 			case pages::VehicleShop_page: view::vehicleshop::VehicleModifications(); break;
-			case pages::VehicleShop_PickedMod_page: view::vehicleshop::VehicleSelctedModifications(); break;
+			case pages::VehicleShop_PickedMod_page: view::vehicleshop::VehicleSelectedModifications(); break;
 
 			case pages::WeaponClub_page:view::weaponclub::WeaponClubListClassView(); break;
 			case pages::WeaponClub_Picked_Group_page:view::weaponclub::WeaponClubListWeaponView(); break;

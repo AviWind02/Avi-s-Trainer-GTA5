@@ -18,6 +18,7 @@ namespace GUI {
         namespace DX
         {
             void ShowWeaponWindow();
+            void ShowVehicleShopwWindow();
         }
 
     }

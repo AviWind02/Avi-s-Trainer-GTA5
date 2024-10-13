@@ -57,7 +57,17 @@ namespace feature {
             }
         }
 
-	
+        struct VehicleSpec
+        {
+            float maxSpeed;
+            float maxBraking;
+            float maxAcceleration;
+            float maxTraction;
+        }; 
+        extern std::optional<VehicleSpec> Spec;
+        extern std::optional<VehicleSpec> FetchVehicleSpec(Vehicle vehicle);
+
 
 	}
 }
+

@@ -67,8 +67,8 @@ namespace GUI {
         void NextSubmenu(pages::SubMenu menu) {
             if (subMenuLevel < maxSubMenuLevels) {
                 subMenuArray[subMenuLevel] = currentSubMenu;
+                originalOption[subMenuLevel] = currentOption;// Save the OG option - Dont need to re scroll
                 subMenuLevel++;
-                originalOption[currentSubMenu] = currentOption;// Save the OG option - Dont need to re scroll and shit
                 currentSubMenu = menu;
                 currentOption = 1;
             }
@@ -78,6 +78,7 @@ namespace GUI {
                 subMenuLevel--;
                 currentSubMenu = subMenuArray[subMenuLevel];
                 currentOption = originalOption[subMenuLevel];
+
             }
         }
 

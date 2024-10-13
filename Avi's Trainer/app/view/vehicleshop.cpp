@@ -7,6 +7,7 @@ namespace view {
 		bool hasTheoriginalModifiableModsChanged;
 		static int modificationsTypeID;
 		int originalModifiableMods; // Store the original modification
+		
 
 		void StoreOriginalModifications(int modifications) {
 			originalModifiableMods = VEHICLE::GET_VEHICLE_MOD(g_feature::g_player::GetPlayerVehicle(), modifications);
@@ -29,9 +30,12 @@ namespace view {
 		{
 			if (originalModifiableMods == modifiableMods)
 				GUI::menu::SetSpriteOnOption("commonmenu", "shop_garage_icon_a");
-			if (GUI::controls::currentOption == GUI::controls::optionCount)//On hover set the mod to make it viewable
+			if (GUI::controls::currentOption == GUI::controls::optionCount) {//On hover set the mod to make it viewable
 				SelectVehicleModifiableMods(modifiableMods, true);
+				//feature::vehicleshop::FetchVehicleSpec(g_player::GetPlayerVehicle());
+			}
 		}
+
 
 		void VehicleModifications() {
 
@@ -41,11 +45,20 @@ namespace view {
 				GUI::buttons::Option("You need to be in a vehicle.");
 				return;
 			}
-			
+
+			//feature::vehicleshop::FetchVehicleSpec(g_player::GetPlayerVehicle());
 
 			for (int modifications = 0; modifications < 48; modifications++) {
-			/*	if (modifications >= 11 && modifications <= 24)
-					continue;*/
+				//These have its own class
+				if (modifications == VehicleModTurbo ||
+					modifications == VehicleModXenonHeadlights ||
+					modifications == VehicleModFrontWheels ||
+					modifications == VehicleModTireSmoke ||
+					modifications == VehicleModHorns ||
+					modifications == VehicleModBackWheels)
+				{
+					continue;
+				}
 
 				if (VEHICLE::GET_NUM_VEHICLE_MODS(g_feature::g_player::GetPlayerVehicle(), modifications) > 0)
 				{
@@ -71,7 +84,10 @@ namespace view {
 			}
 		}
 
-		void VehicleSelctedModifications() {
+		void VehicleSelectedModifications() {
+
+
+
 			std::string fallbackName = "mod";
 
 
@@ -99,5 +115,8 @@ namespace view {
 				SelectedVehicleModifiableMods(modifiableMods);
 			}
 		}
+
+
+
 	}
 }

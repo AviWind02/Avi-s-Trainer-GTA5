@@ -163,6 +163,7 @@ namespace core {
             }
 
             GUI::draw::DX::ShowWeaponWindow();
+            GUI::draw::DX::ShowVehicleShopwWindow();
 
             ImGui::Render();
             ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());

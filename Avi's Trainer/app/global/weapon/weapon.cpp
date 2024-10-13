@@ -8,7 +8,7 @@ namespace g_feature {
 
         bool IsWeaponInGroup(int group, const char* weaponName) {
             Hash weaponGroup = WEAPON::GET_WEAPONTYPE_GROUP(rage::joaat(weaponName));
-            return weaponGroup == rage::joaat(feature::weapon::weaponclub::WeaponGroups[group]);
+            return weaponGroup == rage::joaat(feature::weapon::weaponclub::WeaponGroupsHash[group]);
         }
 
         bool IsComponentForWeapon(const std::string& componentName, const std::string& weaponName) {

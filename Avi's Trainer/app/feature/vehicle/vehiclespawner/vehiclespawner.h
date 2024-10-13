@@ -26,9 +26,8 @@ namespace feature {
             "Military Vehicles",
             "Commercial Vehicles",
             "Trains",
-            "Open-Wheel Race Cars",
-            "All-Vehicles"
-		};
+            "Open-Wheel Race Cars"
+        };
 
         struct VehicleInfo
         {

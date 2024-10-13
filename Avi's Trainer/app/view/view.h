@@ -17,7 +17,7 @@ namespace view {
 
 	namespace vehicleshop {
 		void VehicleModifications();
-		void VehicleSelctedModifications();
+		void VehicleSelectedModifications();
 
 	}
 }

@@ -12,6 +12,7 @@
     <ClCompile Include="app\feature\local\playermisc.cpp" />
     <ClCompile Include="app\feature\local\playermovement.cpp" />
     <ClCompile Include="app\feature\local\wantedlevel.cpp" />
+    <ClCompile Include="app\feature\vehicle\vehicleshop\vehicleshopfeat.cpp" />
     <ClCompile Include="app\feature\vehicle\vehiclespawner\loadvehicles.cpp" />
     <ClCompile Include="app\feature\weapons\weaponclub\loadweapons.cpp" />
     <ClCompile Include="app\global\entity\entity.cpp" />

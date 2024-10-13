@@ -7,6 +7,21 @@ using namespace g_feature;
 namespace view {
     namespace weaponclub {
 
+
+        const  std::vector<std::string> WeaponGroups =
+        {
+            "Melee Weapons",
+            "Pistols",
+            "Rifles",
+            "Machine Guns",
+            "Shotguns",
+            "Sniper Rifles",
+            "Heavy Weapons",
+            "Thrown Weapons",
+            "Submachine Guns",
+            "Other Weapons"
+        };
+
         static std::string selectedWeaponhash;
         static int selectedWeaponClass;
         static std::string selectedWeaponName;
@@ -30,17 +45,17 @@ namespace view {
                 selectedWeaponClass = 22;
             }
 
-            for (size_t i = 0; i < feature::weapon::weaponclub::WeaponGroups->size(); ++i) {
-                if (buttons::Sub(feature::weapon::weaponclub::WeaponGroups[i].c_str(), pages::WeaponClub_Picked_Group_page, [i]() {selectedWeaponClass = i; }));
+            for (size_t i = 0; i < WeaponGroups.size(); ++i) {
+                    buttons::Sub(WeaponGroups[i].c_str(), pages::WeaponClub_Picked_Group_page, [i]() { selectedWeaponClass = i; });
             }
         }
 
         void WeaponClubListWeaponView() {
-            GUI::menu::SetSubTitle(feature::weapon::weaponclub::WeaponGroups[selectedWeaponClass].c_str());
+            GUI::menu::SetSubTitle(WeaponGroups[selectedWeaponClass].c_str());
 
             for (const auto& weapon : feature::weapon::weaponclub::g_weaponList) {
                 if (weapon.classIndex == selectedWeaponClass || selectedWeaponClass == 22) {
-                    if (buttons::Sub((weapon.displayName == "NULL" ? weapon.hashstring : weapon.displayName).c_str(), pages::WeaponClub_Picked_Gun_page, [weapon]() {SelectWeapon(weapon); }));
+                    buttons::Sub((weapon.displayName == "NULL" ? weapon.hashstring : weapon.displayName).c_str(), pages::WeaponClub_Picked_Gun_page, [weapon]() {SelectWeapon(weapon); });
 
                     if (GUI::controls::currentOption == GUI::controls::optionCount) {
                         DisplayWeaponDetails(weapon);
