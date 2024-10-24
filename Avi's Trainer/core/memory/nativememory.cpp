@@ -15,7 +15,7 @@ namespace core::memory {
 
         void InitOffsets() {//Found some of these patterns from Menyoo, and vStance
 
-            auto address = FindPattern("\x83\xF9\xFF\x74\x31\x4C\x8B\x0D\x00\x00\x00\x00\x44\x8B\xC1\x49\x8B\x41\x08", "xxxxxxxx????xxxxxxx");
+            uintptr_t address = FindPattern("\x83\xF9\xFF\x74\x31\x4C\x8B\x0D\x00\x00\x00\x00\x44\x8B\xC1\x49\x8B\x41\x08", "xxxxxxxx????xxxxxxx");
             if (!address) {
                 LOG_TAG("ERROR") << "Couldn't find GetAddressOfEntity pattern";
             }
@@ -35,11 +35,9 @@ namespace core::memory {
                 LOG_TAG("DEBUG") << "GetModelInfo pattern found at: " << address;
             }
 
-            address = FindPattern("\x48\x63\xC1\x48\x8D\x0D\x00\x00\x00\x00\xF3\x0F\x10\x04\x81\xF3\x0F\x11\x05\x00\x00\x00\x00", "xxxxxx????xxxxxxxxx????");
-            gravityOffsetWrite = reinterpret_cast<float*>(*reinterpret_cast<int*>(address + 6) + address + 10);
-            LOG_TAG(gravityOffsetWrite == 0 ? "WARN" : "DEBUG") << "Gravity Offset: " << gravityOffsetWrite;
-            gravityOffsetRead = reinterpret_cast<float*>(*reinterpret_cast<int*>(address + 19) + address + 23);
-            LOG_TAG(gravityOffsetRead == 0 ? "WARN" : "DEBUG") << "Gravity Offset: " << gravityOffsetRead;
+            address = FindPattern("F3 0F 59 BF ? ? ? ? 4D 85 E4 0F 8E ? ? ? ?");
+            gravityOffset = address == 0 ? 0 : *(int*)(address + 4);
+            LOG_TAG(gravityOffset == 0 ? "WARN" : "DEBUG") << "Gravity Offset: " << gravityOffset;
 
 
             {//Gears

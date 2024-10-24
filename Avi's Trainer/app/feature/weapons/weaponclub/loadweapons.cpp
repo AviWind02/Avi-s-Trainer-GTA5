@@ -18,6 +18,7 @@ namespace feature {
         
         void LoadWeaponWithInfo()// so far ok we peformace 
         {
+            LOG << "Loading Weapons Info";
             if (loadWeaponWithInfo)
             {
                 FILE* fp = fopen("Avi\\Data\\weapons.json", "r");
@@ -67,19 +68,19 @@ namespace feature {
                             }
                         }
 
-                        LOG << "Loaded weapon: " << weaponData.hashstring << " | (" << weaponData.displayName << ")" << " | Group " << weaponData.classIndex;
+                        //LOG << "Loaded weapon: " << weaponData.hashstring << " | (" << weaponData.displayName << ")" << " | Group " << weaponData.classIndex;
 
                         if (weapon.HasMember("m_attachments")) {
                             const auto& attachments = weapon["m_attachments"];
                             if (attachments.Size() > 0) {
-                                LOG << "Weapon " << weaponName << " has the following components:";
+                                //LOG << "Weapon " << weaponName << " has the following components:";
                             }
                             for (rapidjson::SizeType i = 0; i < attachments.Size(); ++i) {
                                 std::string componentName = attachments[i].GetString();
                                 weaponData.components.push_back(componentName);
 
                                 // Log each component assigned to this weapon
-                                LOG << " - Component: " << componentName;
+                                //LOG << " - Component: " << componentName;
                             }
                         }
 
@@ -104,10 +105,10 @@ namespace feature {
 
                         g_weaponListComp.push_back(componentData);
 
-                        LOG << "Loaded component: " << componentName
+   /*                     LOG << "Loaded component: " << componentName
                             << " | Display Desc: " << componentData.displayDesc
                             << " | Display Name: " << componentData.displayName
-                            << " | Name: " << name;
+                            << " | Name: " << name;*/
                     }
                 }
                 LOG << "Weapon and component information loaded successfully.";

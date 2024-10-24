@@ -14,8 +14,7 @@ namespace core::memory {
         inline int gearRatiosOffset{ 0 };
 
         // Gravity offset
-        inline float* gravityOffsetWrite{ 0 };
-        inline float* gravityOffsetRead{ 0 };
+        inline int gravityOffset{ 0 };
 
         // Wheel offsets
         inline int wheelSteerMultOffset{ 0 };

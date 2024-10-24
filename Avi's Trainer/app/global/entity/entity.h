@@ -15,7 +15,10 @@ namespace g_feature {
         void AttachObjects(Entity e1, Entity e2, Vector3 coords);
         void AttachObject(Entity e1, const char* objectHash);
         Vector3 GetGameplayCamRot();
-
-
+        Vector3 GetGameplayCamCoords();
+        void SetCoords(Entity entity, Vector3 coord);
+        std::uint64_t GetEntityAddress(Entity handle);
+        void SetGravity(Entity handle, float value);
+        float GetGravity(Entity handle);
     }
 }

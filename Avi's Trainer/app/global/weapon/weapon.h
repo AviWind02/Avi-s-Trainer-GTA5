@@ -2,7 +2,7 @@
 namespace g_feature {
 	namespace g_weapon {
 
-        bool IsPlayerAiming(Ped ped);
+        bool IsPlayerAiming(Ped ped = g_player::GetPlayerID());
         void SetInfiniteAmmo(Ped ped, bool enable);
         int GetAmmoCountInHand(Ped ped);
         Hash GetCurrentWeaponInHand(Ped ped);
@@ -11,7 +11,7 @@ namespace g_feature {
         void TakeWeapon(Ped ped, const char* weaponHashName);
         void GiveWeapon(Ped ped, const char* weaponHashName, bool inHand);
         void ShootBullet(const std::string& hashBullet, int speed, int damage, bool audible, bool showBullet);
-        bool IsPlayerShooting(Ped ped);
+        bool IsPlayerShooting(Ped ped = g_player::GetPlayerPed());
         bool IsComponentForWeapon(const std::string& componentName, const std::string& weaponName);
         bool IsWeaponInGroup(int group, const char* weaponName);
         void AddAmmoForWeapon(Ped ped, const char* weaponHashName, int ammoAmount);

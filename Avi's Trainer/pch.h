@@ -51,6 +51,7 @@
 #include "core/logger/logger.h"
 #include "core/memory/patterns.h"
 #include "core/fs/filesystem.h"
+#include "core/memory/nativememory.h"
 
 //GUI
 #include "GUI/controls/controls.h"

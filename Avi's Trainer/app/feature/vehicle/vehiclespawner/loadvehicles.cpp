@@ -49,6 +49,8 @@ namespace feature {
         bool loadVehiclInfo = true;
         void LoadVehicleWithInfo()
         {
+            LOG << "Loading Vehicle information loaded.";
+
             if (loadVehiclInfo)
             {
                 std::string vehicleHashListPath = "Avi\\Data\\vehiclehashlist.txt";
@@ -67,18 +69,20 @@ namespace feature {
                         VehicleInfo vehicleInfo = vehicleInfoOpt.value();
                         g_vehicleList.push_back(vehicleInfo);
 
-                        std::string LoadedInfo = ("Vehicle Loaded: "
+       /*                 std::string LoadedInfo = ("Vehicle Loaded: "
                             "Display name: " + std::string(vehicleInfo.vehicleDisplayName) +
                             " | Hash name: " + std::string(vehicleInfo.vehicleHashName) +
                             " | Class index: " + std::to_string(vehicleInfo.vehicleClass) +
                             " | INDEX: " + std::to_string(index));
 
-                        LOG << LoadedInfo;
+                        LOG << LoadedInfo;*/
                         index++;
                     }
                     WAIT(0);
                 }
             } loadVehiclInfo = false;
+            LOG << "Vehicle information loaded successfully.";
+
         }
     }
 }

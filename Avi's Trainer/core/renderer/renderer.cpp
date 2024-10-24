@@ -30,10 +30,12 @@ namespace core {
         //Images
         void LoadWeaponTextures() {
             image::LoadImages("Avi\\Textures\\Weapon", image::weaponTextures);
+            LOG << "Loaded Weapon images";
         }
 
         void LoadVehicleTextures() {
             image::LoadImages("Avi\\Textures\\Vehicle", image::vehicleTextures);
+            LOG << "Loaded Vehicle images";
         }
 
         // Initialize ImGui
@@ -145,13 +147,13 @@ namespace core {
             ImGui::NewFrame();
             if (loadOnce)
             {
+                
                 std::thread weaponThread(LoadWeaponTextures);
                 weaponThread.detach();
 
                 std::thread vehicleThread(LoadVehicleTextures);
                 vehicleThread.detach();
 
-                std::cout << "Weapon and Vehicle textures are loading." << std::endl;
 
                 loadOnce = false;
             }

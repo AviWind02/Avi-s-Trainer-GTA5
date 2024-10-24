@@ -1,53 +1,56 @@
 #include "pch.h"
-#include "localfeatures.hpp"
+#include "localfeatures.h"
 
 namespace app {
-    namespace feature::local {
+    namespace feature::local::playerhealth {
 
         using namespace g_feature;
 
-        PlayerHealth::PlayerHealth()
-            : healthRechargeRateSpeed(2.5f),
-            tickHealthRechargeRate(false),
-            tickCleanPlayer(false),
-            tickInvincibility(false),
-            wasInvincible(false),
-            tickKillPlayer(false),
-            tickrefillhealth(false),
-            tickrefillarmor(false) {}
+        float healthRechargeRateSpeed;
+        bool tickHealthRechargeRate;
+        
+        bool tickCleanPlayer;
+        
+        bool tickInvincibility;
+        bool wasInvincible;
+        
+        bool tickKillPlayer;
+        
+        bool tickrefillhealth;
+        bool tickrefillarmor;
 
-        void PlayerHealth::SetPlayerHealth(int health) {
+        void SetPlayerHealth(int health) {
             ENTITY::SET_ENTITY_HEALTH(g_player::GetPlayerPed(), health, NULL);
         }
 
-        void PlayerHealth::SetPlayerArmor(int armor) {
+        void SetPlayerArmor(int armor) {
             PED::SET_PED_ARMOUR(g_player::GetPlayerPed(), armor);
         }
 
-        void PlayerHealth::SetHealthRechargeRate(float rate) {
+        void SetHealthRechargeRate(float rate) {
             PLAYER::SET_PLAYER_HEALTH_RECHARGE_MULTIPLIER(g_player::GetPlayerPed(), rate);
         }
 
-        void PlayerHealth::SetInvincibility(bool enabled) {
+        void SetInvincibility(bool enabled) {
             ENTITY::SET_ENTITY_INVINCIBLE(g_player::GetPlayerPed(), enabled);
         }
 
-        void PlayerHealth::ClearPlayerDamage() {
+        void ClearPlayerDamage() {
             PED::CLEAR_PED_WETNESS(g_player::GetPlayerPed());
             PED::CLEAR_PED_BLOOD_DAMAGE(g_player::GetPlayerPed());
             PED::RESET_PED_VISIBLE_DAMAGE(g_player::GetPlayerPed());
         }
 
 
-        void PlayerHealth::RefillHealth() {
+        void RefillHealth() {
             SetPlayerHealth(200);
         }
 
-        void PlayerHealth::RefillArmor() {
+        void RefillArmor() {
             SetPlayerArmor(500);
         }
 
-        void PlayerHealth::Tick() {
+        void Tick() {
             if (tickrefillhealth){
                 RefillHealth();
             }

@@ -29,7 +29,7 @@ namespace core {
                         if (LoadTextureFromFile(filePath.c_str(), &texture, &width, &height))
                         {
                             imageResources.push_back(dximage{ texture, fileName });
-                            LOG << "Loaded image: " << fileName;
+                            //LOG << "Loaded image: " << fileName;
                         }
                         else
                         {

@@ -15,6 +15,8 @@
     <ClCompile Include="app\feature\vehicle\vehicleshop\vehicleshopfeat.cpp" />
     <ClCompile Include="app\feature\vehicle\vehiclespawner\loadvehicles.cpp" />
     <ClCompile Include="app\feature\weapons\weaponclub\loadweapons.cpp" />
+    <ClCompile Include="app\feature\weapons\weaponfeat\gravityweapons.cpp" />
+    <ClCompile Include="app\feature\weapons\weaponfeat\weaponfeatures.cpp" />
     <ClCompile Include="app\global\entity\entity.cpp" />
     <ClCompile Include="app\global\math\math.cpp" />
     <ClCompile Include="app\global\player\player.cpp" />
@@ -24,6 +26,7 @@
     <ClCompile Include="app\view\vehicleshop.cpp" />
     <ClCompile Include="app\view\vehiclespawner.cpp" />
     <ClCompile Include="app\view\weaponclub.cpp" />
+    <ClCompile Include="app\view\weaponview.cpp" />
     <ClCompile Include="core\fs\filesystem.cpp" />
     <ClCompile Include="core\logger\logger.cpp" />
     <ClCompile Include="core\renderer\imagesloader.cpp" />
@@ -64,10 +67,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="app\feature\local\localfeatures.hpp" />
+    <ClInclude Include="app\feature\local\localfeatures.h" />
     <ClInclude Include="app\feature\vehicle\vehicleshop\vehicleshop.h" />
     <ClInclude Include="app\feature\vehicle\vehiclespawner\vehiclespawner.h" />
     <ClInclude Include="app\feature\weapons\weaponclub\weaponclub.h" />
+    <ClInclude Include="app\feature\weapons\weaponfeat\weaponfeatures.h" />
     <ClInclude Include="app\global\entity\entity.h" />
     <ClInclude Include="app\global\math\math.h" />
     <ClInclude Include="app\global\player\player.h" />

@@ -4,6 +4,7 @@ namespace pages
     enum SubMenu {
         mainmenu_page,
         local_page,
+        weapon_page,
         VehicleSpawner_page,
         VehicleSpawner_Picked_page,
         WeaponClub_page,

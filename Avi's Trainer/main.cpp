@@ -2,9 +2,10 @@
 
 #include <GUI/menu/menu.h>
 
-#include "app/feature/local/localfeatures.hpp"
+#include "app/feature/local/localfeatures.h"
 #include "app/feature/vehicle/vehiclespawner/vehiclespawner.h"
 #include "app/feature/weapons/weaponclub/weaponclub.h"
+#include "app/feature/weapons/weaponfeat/weaponfeatures.h"
 
 
 extern void ScriptMain();
@@ -18,6 +19,8 @@ BOOL APIENTRY DllMain(HMODULE hInstance, DWORD reason, LPVOID lpReserved)
 		LOG << "Registered Script Main";
 		scriptRegisterAdditionalThread(hInstance, app::feature::local::LocalThread);
 		LOG << "Registered Local Thread";
+		scriptRegisterAdditionalThread(hInstance, app::feature::weapon::WeaponThread);
+		LOG << "Registered Weapon Thread";
 		scriptRegisterAdditionalThread(hInstance, feature::vehiclespawner::LoadVehicleWithInfo);
 		LOG << "Registered Vehicle Info Loader Thread";
 		scriptRegisterAdditionalThread(hInstance, feature::weapon::weaponclub::LoadWeaponWithInfo);

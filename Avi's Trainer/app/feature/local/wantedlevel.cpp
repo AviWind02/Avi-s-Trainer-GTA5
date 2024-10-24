@@ -1,41 +1,43 @@
 #include "pch.h"
-#include "localfeatures.hpp"
+#include "localfeatures.h"
 
 namespace app {
-    namespace feature::local {
+    namespace feature::local::wantedlevel {
 
         using namespace g_feature;
 
-        WantedLevel::WantedLevel()
-            : wantedLevelIndex(0), holdWantedLevel(false), neverWantedLevel(false), alwaysWantedLevel(false) {}
+        int wantedLevelIndex;
+        bool holdWantedLevel;
+        bool neverWantedLevel;
+        bool alwaysWantedLevel;
 
-        void WantedLevel::SetWantedLevel(int level) {
+        void SetWantedLevel(int level) {
             wantedLevelIndex = level;
             PLAYER::SET_PLAYER_WANTED_LEVEL(g_player::GetPlayerID(), wantedLevelIndex, false);
             PLAYER::SET_PLAYER_WANTED_LEVEL_NOW(g_player::GetPlayerID(), false);
         }
 
-        void WantedLevel::ClearWantedLevel() {
+        void ClearWantedLevel() {
             SetWantedLevel(0);
         }
 
-        void WantedLevel::HoldCurrentLevel() {
+        void HoldCurrentLevel() {
             holdWantedLevel = true;
         }
 
-        void WantedLevel::EnableNeverWanted() {
+        void EnableNeverWanted() {
             neverWantedLevel = true;
             alwaysWantedLevel = false;
             ClearWantedLevel(); 
         }
 
-        void WantedLevel::EnableAlwaysWanted() {
+        void EnableAlwaysWanted() {
             alwaysWantedLevel = true;
             neverWantedLevel = false;
             SetWantedLevel(5);
         }
 
-        void WantedLevel::Tick() {
+        void Tick() {
             if (alwaysWantedLevel) {
                 SetWantedLevel(5);
             }

@@ -1,50 +1,56 @@
 #include "pch.h"
-#include "localfeatures.hpp"
+#include "localfeatures.h"
 
 namespace app {
-    namespace feature::local {
+    namespace feature::local::playermovement {
 
         using namespace g_feature;
  
     
+        bool tickNoclip;
+        float noClipSpeed;
+        int entityAlpha;
 
-        PlayerMovement::PlayerMovement()
-            : tickNoclip(false), noClipSpeed(0.f), entityAlpha(150),
-            tickFastRun(false), tickFastSwim(false), tickFastRunReset(false),
-            tickFastSwimReset(false), tickMaxStamina(false), tickSuperJump(false),
-            runningIndex(1.f), swimmingIndex(1.f) {}
+        bool tickFastRun;
+        bool tickFastSwim;
+        bool tickFastRunReset;
+        bool tickFastSwimReset;
+        bool tickMaxStamina;
+        bool tickSuperJump;
+        float runningIndex;
+        float swimmingIndex;
 
-        void PlayerMovement::SetNoclipState(bool enabled) {
+        void SetNoclipState(bool enabled) {
             tickNoclip = enabled;
         }
 
-        void PlayerMovement::UpdateNoclipSpeed(float speed) {
+        void UpdateNoclipSpeed(float speed) {
             noClipSpeed = speed;
         }
 
-        void PlayerMovement::ResetNoclip() {
+        void ResetNoclip() {
             ENTITY::RESET_ENTITY_ALPHA(g_player::GetPlayerPed());
             ENTITY::SET_ENTITY_COLLISION(g_player::GetPlayerPed(), true, true);
             noClipSpeed = 0;
         }
 
-        void PlayerMovement::SetRunSpeed(float speed) {
+        void SetRunSpeed(float speed) {
             runningIndex = speed;
         }
 
-        void PlayerMovement::SetSwimSpeed(float speed) {
+        void SetSwimSpeed(float speed) {
             swimmingIndex = speed;
         }
 
-        void PlayerMovement::EnableSuperJump(bool enabled) {
+        void EnableSuperJump(bool enabled) {
             tickSuperJump = enabled;
         }
 
-        void PlayerMovement::ResetStamina() {
+        void ResetStamina() {
             PLAYER::RESET_PLAYER_STAMINA(g_player::GetPlayerID());
         }
 
-        void PlayerMovement::Tick() {
+        void Tick() {
             static bool resetNoclip = false;
             if (tickNoclip) {
                 Vector3 playerCoords = g_player::GetPlayerCoords();

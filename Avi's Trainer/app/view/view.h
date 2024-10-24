@@ -3,7 +3,9 @@ namespace view {
 	namespace local {
 		void View();
 	}
-
+	namespace weapon {
+		void View();
+	}
 	namespace weaponclub {
 		void WeaponClubListWeaponView();
 		void WeaponClubListClassView();
@@ -20,4 +22,7 @@ namespace view {
 		void VehicleSelectedModifications();
 
 	}
+
+
+	
 }

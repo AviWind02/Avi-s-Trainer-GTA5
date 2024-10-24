@@ -40,6 +40,9 @@
     <ClCompile Include="app\feature\local\playermisc.cpp" />
     <ClCompile Include="app\view\vehicleshop.cpp" />
     <ClCompile Include="app\feature\vehicle\vehicleshop\vehicleshopfeat.cpp" />
+    <ClCompile Include="app\feature\weapons\weaponfeat\gravityweapons.cpp" />
+    <ClCompile Include="app\feature\weapons\weaponfeat\weaponfeatures.cpp" />
+    <ClCompile Include="app\view\weaponview.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -121,8 +124,9 @@
     <ClInclude Include="core\types\colour.h" />
     <ClInclude Include="app\global\weapon\weapon.h" />
     <ClInclude Include="core\renderer\fonts\rubik.hpp" />
-    <ClInclude Include="app\feature\local\localfeatures.hpp" />
+    <ClInclude Include="app\feature\local\localfeatures.h" />
     <ClInclude Include="app\feature\vehicle\vehicleshop\vehicleshop.h" />
+    <ClInclude Include="app\feature\weapons\weaponfeat\weaponfeatures.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="vendor\Script Hook V\lib\ScriptHookV.lib" />

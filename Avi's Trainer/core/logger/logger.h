@@ -37,3 +37,4 @@ namespace Logger_c
 #define LOG Logger()
 #define LOG_TAG(tag) Logger(tag)
 
+

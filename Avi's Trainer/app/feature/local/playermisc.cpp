@@ -1,19 +1,26 @@
 #include "pch.h"
-#include "localfeatures.hpp"
+#include "localfeatures.h"
 
 namespace app {
-    namespace feature::local {
+    namespace feature::local::playermisc {
 
         using namespace g_feature;
+        
+        bool tickIgnorePlayer;
+        bool resetIgnorePlayer;
 
-        PlayerMisc::PlayerMisc()
-            : tickIgnorePlayer(false), resetIgnorePlayer(false),
-            tickNoRagdoll(false), tickSeatbelt(false),
-            alphaValue(255), tickInvisible(false),
-            tickInvisibleIndex(false), tickInvisibleNetwork(false),
-            tickInvisibleReset(false), tickInvisibleNetworkReset(false) {}
+        bool tickNoRagdoll;
 
-        void PlayerMisc::ToggleIgnorePlayer(bool enabled) {
+        bool tickSeatbelt;
+
+        int alphaValue = 255;
+        bool tickInvisible;
+        bool tickInvisibleIndex;
+        bool tickInvisibleNetwork;
+        bool tickInvisibleReset;
+        bool tickInvisibleNetworkReset;
+
+        void ToggleIgnorePlayer(bool enabled) {
             tickIgnorePlayer = enabled;
             if (enabled) {
                 Ped ped = NULL;  // Placeholder for handling ped
@@ -36,7 +43,7 @@ namespace app {
             }
         }
 
-        void PlayerMisc::ToggleRagdoll(bool enabled) {
+        void ToggleRagdoll(bool enabled) {
             tickNoRagdoll = enabled;
             if (enabled) {
                 PED::SET_PED_CAN_RAGDOLL(g_player::GetPlayerPed(), false);
@@ -48,7 +55,7 @@ namespace app {
             }
         }
 
-        void PlayerMisc::ToggleSeatbelt(bool enabled) {
+        void ToggleSeatbelt(bool enabled) {
             tickSeatbelt = enabled;
             if (enabled) {
                 PED::SET_PED_CAN_BE_KNOCKED_OFF_VEHICLE(g_player::GetPlayerPed(), 1);
@@ -56,7 +63,7 @@ namespace app {
             }
         }
 
-        void PlayerMisc::SetInvisibility(bool enabled, int alpha, bool networkInvisible) {
+        void SetInvisibility(bool enabled, int alpha, bool networkInvisible) {
             alphaValue = alpha;
             tickInvisible = enabled;
             tickInvisibleNetwork = networkInvisible;
@@ -86,7 +93,7 @@ namespace app {
             }
         }
 
-        void PlayerMisc::Tick() {
+        void Tick() {
             if (tickIgnorePlayer) {
                 ToggleIgnorePlayer(true);
             }

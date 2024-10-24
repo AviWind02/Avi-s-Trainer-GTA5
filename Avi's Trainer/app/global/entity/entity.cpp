@@ -10,6 +10,9 @@ namespace g_feature {
             return CAM::GET_GAMEPLAY_CAM_ROT(0);
         }
 
+        Vector3 GetGameplayCamCoords() {
+            return CAM::GET_GAMEPLAY_CAM_COORD();
+        }
         void ApplyForce(Entity entityHandle, Vector3 direction, Vector3 offset, int forceType) {
             ENTITY::APPLY_FORCE_TO_ENTITY(entityHandle, forceType, direction.x, direction.y, direction.z, offset.x, offset.y, offset.z, false, false, true, true, false, true);
         }
@@ -37,6 +40,7 @@ namespace g_feature {
             Vector3 direction = RotationToDirection(&rot);
             ApplyForce(entityHandle, direction * force, 1);
         }
+     
 
         Object SetRope(Entity startEntity, Entity endEntity) {
             PHYSICS::ROPE_LOAD_TEXTURES();
@@ -88,6 +92,27 @@ namespace g_feature {
             Object obj;
             SpawnObject(&obj, objectHash, { 0, 0, 0 });
             AttachObjects(obj, e1, { 0, 0, 0 });
+        }
+
+        void SetCoords(Entity entity, Vector3 coord)
+        {
+            ENTITY::SET_ENTITY_COORDS_NO_OFFSET(entity, coord.x, coord.y, coord.z, false, false, false);
+        }
+
+
+        std::uint64_t GetEntityAddress(Entity handle) {
+            return  core::memory::nativememory::GetAddressOfEntity(handle);
+        }
+
+        void SetGravity(Entity handle, float value) {
+
+            auto address = GetEntityAddress(handle);
+            *reinterpret_cast<float*>(address + core::memory::nativememory::gravityOffset) = value;
+        }
+        float GetGravity(Entity handle) {
+
+            auto address = GetEntityAddress(handle);
+            return *reinterpret_cast<float*>(address + core::memory::nativememory::gravityOffset);
         }
 
     }

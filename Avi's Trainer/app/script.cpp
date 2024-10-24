@@ -7,6 +7,7 @@
 
 #include "core/pool/pool.h"
 #include "core/memory/nativememory.h"
+#include "feature/local/localfeatures.h"
 
 int i;
 
@@ -22,18 +23,18 @@ void MenuUI()
 		switch (GUI::controls::currentSubMenu){
 			case pages::mainmenu_page:{
 				GUI::menu::SetSubTitle("Main Menu");
-				GUI::buttons::Sub("Local", pages::local_page);
+				GUI::buttons::Sub("Local Player", pages::local_page);
 				GUI::buttons::Sub("Vehicle Spawner", pages::VehicleSpawner_page);
 				GUI::buttons::Sub("Vehicle Shop", pages::VehicleShop_page);
 				GUI::buttons::Sub("Ammu-Nation store", pages::WeaponClub_page);
-		
-				
+				GUI::buttons::Sub("Weapon Stuff", pages::weapon_page);
 				GUI::buttons::Sub("Setting", pages::setting_page);
 			}break;
 
 
 			case pages::local_page:view::local::View(); break;
-			
+			case pages::weapon_page:view::weapon::View(); break;
+
 			case pages::VehicleSpawner_page:view::vehiclespawner::VehicleSpawnView(); break;
 			case pages::VehicleSpawner_Picked_page:view::vehiclespawner::PickedVehicleView(); break;
 			

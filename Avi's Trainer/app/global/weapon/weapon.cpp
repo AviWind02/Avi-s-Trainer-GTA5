@@ -98,7 +98,7 @@ namespace g_feature {
         }
 
         bool IsPlayerAiming(Ped ped) {
-            return PLAYER::IS_PLAYER_FREE_AIMING(g_player::GetPlayerPed());
+            return PLAYER::IS_PLAYER_FREE_AIMING(ped);
         }
 
         void AddAmmoForWeapon(Ped ped, const char* weaponHashName, int ammoAmount) {
