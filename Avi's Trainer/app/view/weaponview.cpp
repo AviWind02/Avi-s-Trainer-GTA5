@@ -11,14 +11,10 @@ namespace view {
             GUI::menu::SetSubTitle("Weapon Stuff");
 
             {//Grav Guns
-                GUI::buttons::Toggle("Oscillating Gravity Gun", &gravityGun::tickGravityGun_Oscillate, []() { gravityGun::tickGravityGun_Static = false; gravityGun::tickGravityGun_Force = false; });
-                GUI::buttons::Toggle("Static Gravity Gun", &gravityGun::tickGravityGun_Static, []() { gravityGun::tickGravityGun_Oscillate = false; gravityGun::tickGravityGun_Force = false; });
-                GUI::buttons::Toggle("Force Gun", &gravityGun::tickGravityGun_Force, []() { gravityGun::tickGravityGun_Oscillate = false;  gravityGun::tickGravityGun_Static = false; });
-                GUI::buttons::Toggle("Disable Gravity Gun", &gravityGun::tickGravityGun_DisableGrav, []() { gravityGun::tickGravityGun_Oscillate = false;  gravityGun::tickGravityGun_Static = false; });
-
-
-                
-
+                GUI::buttons::Toggle("Oscillating Gravity Gun", &gravityGun::tickGravityGun_Oscillate, []() { gravityGun::tickGravityGun_Static = false; gravityGun::tickGravityGun_Force = false; gravityGun::tickGravityGun_DisableGrav = false; });
+                GUI::buttons::Toggle("Static Gravity Gun", &gravityGun::tickGravityGun_Static, []() { gravityGun::tickGravityGun_Oscillate = false; gravityGun::tickGravityGun_Force = false; gravityGun::tickGravityGun_DisableGrav = false; });
+                GUI::buttons::Toggle("Force Gun", &gravityGun::tickGravityGun_Force, []() { gravityGun::tickGravityGun_Oscillate = false;  gravityGun::tickGravityGun_Static = false; gravityGun::tickGravityGun_DisableGrav = false; });
+                GUI::buttons::Toggle("Disable Gravity Gun", &gravityGun::tickGravityGun_DisableGrav, []() { gravityGun::tickGravityGun_Oscillate = false; gravityGun::tickGravityGun_Static = false; gravityGun::tickGravityGun_Force = false; });
             }
             
         }
