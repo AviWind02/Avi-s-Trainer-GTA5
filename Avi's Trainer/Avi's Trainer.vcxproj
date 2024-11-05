@@ -16,6 +16,7 @@
     <ClCompile Include="app\feature\vehicle\vehiclespawner\loadvehicles.cpp" />
     <ClCompile Include="app\feature\weapons\weaponclub\loadweapons.cpp" />
     <ClCompile Include="app\feature\weapons\weaponfeat\gravityweapons.cpp" />
+    <ClCompile Include="app\feature\weapons\weaponfeat\guidedrocketweapon.cpp" />
     <ClCompile Include="app\feature\weapons\weaponfeat\weaponfeatures.cpp" />
     <ClCompile Include="app\global\entity\entity.cpp" />
     <ClCompile Include="app\global\math\math.cpp" />

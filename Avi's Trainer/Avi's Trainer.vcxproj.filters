@@ -43,6 +43,7 @@
     <ClCompile Include="app\feature\weapons\weaponfeat\gravityweapons.cpp" />
     <ClCompile Include="app\feature\weapons\weaponfeat\weaponfeatures.cpp" />
     <ClCompile Include="app\view\weaponview.cpp" />
+    <ClCompile Include="app\feature\weapons\weaponfeat\guidedrocketweapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
